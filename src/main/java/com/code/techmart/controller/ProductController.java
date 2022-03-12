@@ -123,6 +123,10 @@ public class ProductController extends HttpServlet {
 			if(result) {
 				message = "Product Added, Product Name : " +product.getName();
 			}
+			
+			else {
+				message = "Product Added Failed! Product Name : " +product.getName();
+			}
 		} catch (ClassNotFoundException | SQLException e) {
 			message = e.getMessage();
 		}
@@ -133,7 +137,40 @@ public class ProductController extends HttpServlet {
 		rd.forward(request, response);
 	}
 	
-	private void updateProduct(HttpServletRequest request, HttpServletResponse response) {
+	private void updateProduct(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message = "";
+		ProductService service = new ProductService();
+		
+		Product product = new Product();
+		product.setId(Integer.parseInt(request.getParameter("productID")));
+		product.setName(request.getParameter("productName"));
+		product.setModel(request.getParameter("productModel"));
+		product.setPrice(Double.parseDouble(request.getParameter("Price")));
+		product.setType(request.getParameter("productType"));
+		product.setDisplay(Boolean.parseBoolean(request.getParameter("ProductDisplay")));
+		product.setImage(request.getParameter("image"));
+		
+		try {
+			boolean result = service.updateProduct(product);
+			if(result) {
+				message = "Product ID :" + product.getId() + "has been modified";
+			}
+			
+			else {
+				message = "Failed to update Product! ID : " + product.getId();
+			}
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			message = e.getMessage();
+			
+		}
+		
+		
+		request.setAttribute("message", message);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("search-edit-product.jsp");
+		rd.forward(request, response);
 		
 	}
 	

@@ -97,7 +97,7 @@ public class ProductManager {
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 
-		String query = "UPDATE products set(name=?, model=?, display=?, type=?, price=?, image=?) WHERE id=?";
+		String query = "UPDATE techmart.products SET name=?, model=?, display=?, type=?, price=?, image=? WHERE productID=?";
 
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, product.getName());

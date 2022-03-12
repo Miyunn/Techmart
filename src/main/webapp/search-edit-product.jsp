@@ -28,12 +28,10 @@
  
  	<form action="updateProduct" method="post">
  		<label for="productID">Product ID : </label>
- 		<input id="productID" type="number"/>
+ 		<input id="productID" type="number" name="productID" value="${product.getId()}"/>/>
  		
   		<label for="productName">Enter Product Name:</label>
   		<input type="text" id="productName" name="productName" value="${product.getName()}"/>
-  		
-  		<input type="hidden" name="action" value="add"/>
   		
   		<label for="productModel">Enter Product Model:</label>
   		<input type="text" id="productModel" name="productModel" value="${product.getModel()}"/>
@@ -51,7 +49,7 @@
   		<input type="text" id="image" name="image" value="${product.getImage()}"/>
   		
 		<input type="hidden" name="action" value="update"/>
-		<button type="submit"> Add Product</button>
+		<button type="submit">Update Product</button>
  		
  	</form>
  </div>
