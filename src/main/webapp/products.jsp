@@ -41,6 +41,9 @@
           <a class="nav-link" href="add-product.jsp">Add Product</a>
         </li>
       </ul>
+      
+      <p>${message}</p>
+      <p>${deleteMsg}</p>
 
       <div class="table-responsive">
         <table class="table" style="width:100%">
@@ -53,6 +56,7 @@
             <th>On Display</th>
             <th>Price</th>
             <th>Image</th>
+            <th>Action</th>
           </tr>
           
 
@@ -65,6 +69,14 @@
               <td>${product.getDisplay()}</td>
               <td>${product.getPrice()}</td>
               <td>${product.getImage()}</td>
+              <td>
+                <form action="deleteProduct" method="post">
+                  <input type="hidden" name="action" value="delete"/>
+                  <input type="hidden" name="productID" value="${product.getId()}"/>
+                  <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              
+              </td>
             </tr>
             </tag:forEach>
 

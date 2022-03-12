@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 //import org.eclipse.jdt.internal.compiler.ast.Annotation.AnnotationTargetAllowed;
 
@@ -174,7 +175,21 @@ public class ProductController extends HttpServlet {
 		
 	}
 	
-	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) {
+	private void deleteProduct(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
+		String message = "";
+		int productID = Integer.parseInt(request.getParameter("productID"));
+		ProductService service = new ProductService();
+		try {
+			service.deleteProduct(productID);
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message=e.getMessage();
+		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("deleteMsg", message);
+		
+		response.sendRedirect("/techmart/getProduct?action=all");
 	}
 }
