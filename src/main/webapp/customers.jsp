@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Product"%>
+<%@page import="com.code.techmart.model.Customer"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Techmart - Manage Products</title>
+<title>Techmart - Manage Customers</title>
       <!-- Font Awesome -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <!-- Google Fonts Roboto -->
@@ -28,17 +28,17 @@
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Products</h2>
+      <h2 class="text-center">Manage Customers</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getProduct?action=all">All Products</a>
+          <a class="nav-link active" aria-current="page" href="getCustomer?action=all">All Customers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search-edit-product.jsp">Search Product</a>
+          <a class="nav-link" href="search-edit-customer.jsp">Search Customer</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="add-product.jsp">Add Product</a>
+          <a class="nav-link" href="add-customer.jsp">Add Customer</a>
         </li>
       </ul>
       
@@ -49,30 +49,30 @@
         <table class="table" style="width:100%">
     
             <tr>
-            <th>Product ID </th>
-            <th>Product Name</th>
-            <th>Product Model</th>
-            <th>Product Type</th>
-            <th>On Display</th>
-            <th>Price</th>
-            <th>Image</th>
+            <th>Customer ID </th>
+            <th>First Name</th>
+            <th>Last Model</th>
+            <th>Address Type</th>
+            <th>Contact</th>
+            <th>Branch</th>
+            <th>Email</th>
             <th>Action</th>
           </tr>
           
 
-            <tag:forEach var="product" items="${productList}">
+            <tag:forEach var="customer" items="${customerList}">
             <tr>
-              <td>${product.getId()}</td>
-              <td>${product.getName()}</td>
-              <td>${product.getModel()}</td>
-              <td>${product.getType()}</td>
-              <td>${product.getDisplay()}</td>
-              <td>${product.getPrice()}</td>
-              <td>${product.getImage()}</td>
+              <td>${customer.getCustomerID()}</td>
+              <td>${customer.getfName()}</td>
+              <td>${customer.getlName()}</td>
+              <td>${customer.getAddress()}</td>
+              <td>${customer.getContact()}</td>
+              <td>${customer.getBranch()}</td>
+              <td>${customer.getEmail()}</td>
               <td>
-                <form action="deleteProduct" method="post">
+                <form action="deleteCustomer" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="productID" value="${product.getId()}"/>
+                  <input type="hidden" name="customerID" value="${customer.getCustomerID()}"/>
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               

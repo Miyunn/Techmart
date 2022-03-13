@@ -10,6 +10,12 @@
   	<description>Manage product related requests</description>
   	<servlet-class>com.code.techmart.controller.ProductController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>CustomerController</servlet-name>
+  	<display-name>CustomerController</display-name>
+  	<description>Manges customer related functions</description>
+  	<servlet-class>com.code.techmart.controller.CustomerController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
   	<url-pattern>/getProduct</url-pattern>
@@ -25,5 +31,25 @@
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
   	<url-pattern>/deleteProduct</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerController</servlet-name>
+  	<url-pattern>/getCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerController</servlet-name>
+  	<url-pattern>/addCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerController</servlet-name>
+  	<url-pattern>/updateCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerController</servlet-name>
+  	<url-pattern>/deleteCustomer</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>CustomerController</servlet-name>
+  	<url-pattern>/customerLogin</url-pattern>
   </servlet-mapping>
 </web-app>

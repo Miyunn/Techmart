@@ -19,21 +19,15 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Manage Products
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="managemobile.jsp">Mobile Devices</a></li>
-                  <li><a class="dropdown-item" href="#">Accesories</a></li>
-                </ul>
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="getProduct?action=all">Manage Products</a>
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Manage User
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="getCustomers?action=all">Customers</a></li>
+                  <li><a class="dropdown-item" href="getCustomer?action=all">Customers</a></li>
                   <li><a class="dropdown-item" href="#">Agents</a></li>
                   <li><a class="dropdown-item" href="#">Suppliers</a></li>
                 </ul>

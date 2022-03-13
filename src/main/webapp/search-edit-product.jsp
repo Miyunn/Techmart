@@ -5,55 +5,88 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>Techmart - Manage Products</title>
 </head>
 <body>
 
   <jsp:include page="navadmin.jsp" />
+
+
+  <main style="margin-top: 20px">
+    <div class="container pt-4">
+      <h2 class="text-center">Manage Products</h2>
+      
+      <ul class="nav nav-tabs" style="margin-top: 20px;">
+        <li class="nav-item">
+          <a class="nav-link" aria-current="page" href="getProduct?action=all">All Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="search-product.jsp">Search Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="add-product.jsp">Add Product</a>
+        </li>
+      </ul>
   
-  <p>${message}</p>
-  
-  <h2>Search A Product</h2>
-  
-  <form action="getProduct">
-	  <label for="productCode">Product ID : </label>
-	  <input id="productCode" name="productCode" type="text"/>
-	  <input type="hidden" name="action" value="single"> 
-	  <button type="submit">Search</button>
+	<p>${message}</p>
+	
+	<h4 style="text-align: left;"> Enter Product To View / Edit Data</h4>
+	
+	<form action="getProduct">
+		<label for="productCode" class="form-label">Product ID</label>
+		<input id="productCode" name="productCode" class="form-control" type="text"/>
+		<input type="hidden" name="action" value="single" > <br>
+		<button type="submit" class="btn btn-primary">Search</button>
+	</form>
+
+	<br>
+	<hr>
+	<br>
+
+	<h4 style="text-align: left;">Edit Product Data</h4>
+ 
+ <form class="row g-3" action="updateProduct" method="post">
+	<div class="col-md-6">
+		<label for="productID" class="form-label"> Product ID</label>
+		<input id="productID" type="number" name="productID" class="form-control" value="${product.getId()}"/>
+	</div>
+	<div class="col-md-6">
+		<label for="productName" class="form-label">Enter Product Name</label>
+		<input type="text" id="productName" class="form-control" name="productName" value="${product.getName()}"/>
+	</div>
+	<div class="col-6">
+		<label for="productModel" class="form-label">Enter Product Model</label>
+		<input type="text" id="productModel" class="form-control" name="productModel" value="${product.getModel()}"/>
+	</div>
+	<div class="col-6">
+		<label for="productType" class="form-label">Enter Product Type</label>
+  		<input type="text" id=productType" class="form-control" name="productType" value="${product.getType()}"/>
+	</div>
+	<div class="col-md-2">
+		<label for="Price" class="form-label">Price(LKR)</label>
+		<input type="number" id="Price" class="form-control" name="Price" value="${product.getPrice()}"/>
+	</div>
+	<div class="col-md-10">
+		<label for="Image" class="form-label">Image URL</label>
+  		<input type="text" id="image" class="form-control" name="image" value="${product.getImage()}"/>
+	</div>
+
+	<div class="col-12">
+	  <div class="form-check">
+		<input class="form-check-input" type="checkbox" id="productDisplay" name="productDisplay" value="${product.getDisplay()}"/>
+		<label for="productDisplay" class="form-check-label">
+			Dipslay the product on site
+		</label>
+	  </div>
+	</div>
+
+	<input type="hidden" name="action" value="update"/>
+	<div class="col-12">
+	  <button type="submit" class="btn btn-primary">Update Product</button>
+	</div>
   </form>
   
- <br>
- 
- <div class="containter">
- 
- 	<form action="updateProduct" method="post">
- 		<label for="productID">Product ID : </label>
- 		<input id="productID" type="number" name="productID" value="${product.getId()}"/>/>
- 		
-  		<label for="productName">Enter Product Name:</label>
-  		<input type="text" id="productName" name="productName" value="${product.getName()}"/>
-  		
-  		<label for="productModel">Enter Product Model:</label>
-  		<input type="text" id="productModel" name="productModel" value="${product.getModel()}"/>
-  		
-  		<label for="productType">Enter Product Type:</label>
-  		<input type="text" id=productType" name="productType" value="${product.getType()}"/>
 
-		<label for="productModel">Display:</label>
-  		<input type="checkbox" id="productDisplay" name="productDisplay" value="${product.getDisplay()}"/>
-
-		<label for="Price">Price(LKR):</label>
-  		<input type="number" id="Price" name="Price" value="${product.getPrice()}"/>
-
-		<label for="Image">Image URL:</label>
-  		<input type="text" id="image" name="image" value="${product.getImage()}"/>
-  		
-		<input type="hidden" name="action" value="update"/>
-		<button type="submit">Update Product</button>
- 		
- 	</form>
- </div>
-  
   
   
 </body>

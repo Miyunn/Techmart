@@ -101,6 +101,8 @@ public class ProductController extends HttpServlet {
 		
 		request.setAttribute("message", message);
 		request.setAttribute("product", product);
+
+		System.out.println(product.getDisplay());
 		
 		RequestDispatcher rd = request.getRequestDispatcher("search-edit-product.jsp");
 		rd.forward(request, response);
@@ -149,7 +151,7 @@ public class ProductController extends HttpServlet {
 		product.setModel(request.getParameter("productModel"));
 		product.setPrice(Double.parseDouble(request.getParameter("Price")));
 		product.setType(request.getParameter("productType"));
-		product.setDisplay(Boolean.parseBoolean(request.getParameter("ProductDisplay")));
+		product.setDisplay(Boolean.parseBoolean(request.getParameter("productDisplay")));
 		product.setImage(request.getParameter("image"));
 		
 		try {
