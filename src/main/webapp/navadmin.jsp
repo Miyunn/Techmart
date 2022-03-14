@@ -28,8 +28,9 @@
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <li><a class="dropdown-item" href="getCustomer?action=all">Customers</a></li>
-                  <li><a class="dropdown-item" href="#">Agents</a></li>
-                  <li><a class="dropdown-item" href="#">Suppliers</a></li>
+                  <li><a class="dropdown-item" href="getAgent?action=all">Agents</a></li>
+                  <li><a class="dropdown-item" href="getSupplier?action=all">Suppliers</a></li>
+                  <li><a class="dropdown-item" href="getDriver?action=all">Driver</a></li>
                 </ul>
               </li>
               <li class="nav-item">

@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Customer"%>
+<%@page import="com.code.techmart.model.Supplier"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Techmart - Manage Customers</title>
+<title>Techmart - Manage Suppliers</title>
       <!-- Font Awesome -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <!-- Google Fonts Roboto -->
@@ -28,17 +28,17 @@
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Customers</h2>
+      <h2 class="text-center">Manage Suppliers</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getCustomer?action=all">All Customers</a>
+          <a class="nav-link active" aria-current="page" href="getSupplier?action=all">All Suppliers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search-edit-customer.jsp">Search Customer</a>
+          <a class="nav-link" href="search-edit-supplier.jsp">Search Supplier</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="add-customer.jsp">Add Customer</a>
+          <a class="nav-link" href="add-supplier.jsp">Add Supplier</a>
         </li>
       </ul>
       
@@ -49,10 +49,9 @@
         <table class="table" style="width:100%">
     
             <tr>
-            <th>Customer ID </th>
+            <th>Supplier ID </th>
             <th>First Name</th>
             <th>Last Model</th>
-            <th>Address</th>
             <th>Contact</th>
             <th>Branch</th>
             <th>Email</th>
@@ -60,19 +59,18 @@
           </tr>
           
 
-            <tag:forEach var="customer" items="${customerList}">
+            <tag:forEach var="supplier" items="${supplierList}">
             <tr>
-              <td>${customer.getCustomerID()}</td>
-              <td>${customer.getfName()}</td>
-              <td>${customer.getlName()}</td>
-              <td>${customer.getAddress()}</td>
-              <td>${customer.getContact()}</td>
-              <td>${customer.getBranch()}</td>
-              <td>${customer.getEmail()}</td>
+              <td>${supplier.getSupplierID()}</td>
+              <td>${supplier.getfName()}</td>
+              <td>${supplier.getlName()}</td>
+              <td>${supplier.getContact()}</td>
+              <td>${supplier.getBranch()}</td>
+              <td>${supplier.getEmail()}</td>
               <td>
-                <form action="deleteCustomer" method="post">
+                <form action="deleteSupplier" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="customerID" value="${customer.getCustomerID()}"/>
+                  <input type="hidden" name="supplierID" value="${supplier.getSupplierID()}"/>
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               

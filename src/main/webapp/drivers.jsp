@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Customer"%>
+<%@page import="com.code.techmart.model.Driver"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Techmart - Manage Customers</title>
+<title>Techmart - Manage Drivers</title>
       <!-- Font Awesome -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <!-- Google Fonts Roboto -->
@@ -28,17 +28,17 @@
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Customers</h2>
+      <h2 class="text-center">Manage Drivers</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getCustomer?action=all">All Customers</a>
+          <a class="nav-link active" aria-current="page" href="getDriver?action=all">All Drivers</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search-edit-customer.jsp">Search Customer</a>
+          <a class="nav-link" href="search-edit-driver.jsp">Search Driver</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="add-customer.jsp">Add Customer</a>
+          <a class="nav-link" href="add-driver.jsp">Add Driver</a>
         </li>
       </ul>
       
@@ -49,30 +49,28 @@
         <table class="table" style="width:100%">
     
             <tr>
-            <th>Customer ID </th>
+            <th>Driver ID </th>
             <th>First Name</th>
-            <th>Last Model</th>
+            <th>Last Name</th>
             <th>Address</th>
             <th>Contact</th>
             <th>Branch</th>
-            <th>Email</th>
             <th>Action</th>
           </tr>
           
 
-            <tag:forEach var="customer" items="${customerList}">
+            <tag:forEach var="driver" items="${driverList}">
             <tr>
-              <td>${customer.getCustomerID()}</td>
-              <td>${customer.getfName()}</td>
-              <td>${customer.getlName()}</td>
-              <td>${customer.getAddress()}</td>
-              <td>${customer.getContact()}</td>
-              <td>${customer.getBranch()}</td>
-              <td>${customer.getEmail()}</td>
+              <td>${driver.getDriverID()}</td>
+              <td>${driver.getfName()}</td>
+              <td>${driver.getlName()}</td>
+              <td>${driver.getAddress()}</td>
+              <td>${driver.getContact()}</td>
+              <td>${driver.getBranch()}</td>
               <td>
-                <form action="deleteCustomer" method="post">
+                <form action="deleteDriver" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="customerID" value="${customer.getCustomerID()}"/>
+                  <input type="hidden" name="driverID" value="${driver.getDriverID()}"/>
                   <button type="submit" class="btn btn-danger">Delete</button>
                 </form>
               

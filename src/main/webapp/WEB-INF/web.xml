@@ -16,6 +16,24 @@
   	<description>Manges customer related functions</description>
   	<servlet-class>com.code.techmart.controller.CustomerController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>AgentController</servlet-name>
+  	<display-name>AgentController</display-name>
+  	<description>Agent management</description>
+  	<servlet-class>com.code.techmart.controller.AgentController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>SupplierController</servlet-name>
+  	<display-name>SupplierController</display-name>
+  	<description>manages suppliers</description>
+  	<servlet-class>com.code.techmart.controller.SupplierController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>DriverController</servlet-name>
+  	<display-name>DriverController</display-name>
+  	<description></description>
+  	<servlet-class>com.code.techmart.controller.DriverController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
   	<url-pattern>/getProduct</url-pattern>
@@ -51,5 +69,61 @@
   <servlet-mapping>
   	<servlet-name>CustomerController</servlet-name>
   	<url-pattern>/customerLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AgentController</servlet-name>
+  	<url-pattern>/getAgent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AgentController</servlet-name>
+  	<url-pattern>/addAgent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AgentController</servlet-name>
+  	<url-pattern>/deleteAgent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AgentController</servlet-name>
+  	<url-pattern>/updateAgent</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AgentController</servlet-name>
+  	<url-pattern>/agentLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierController</servlet-name>
+  	<url-pattern>/getSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierController</servlet-name>
+  	<url-pattern>/addSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierController</servlet-name>
+  	<url-pattern>/deleteSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierController</servlet-name>
+  	<url-pattern>/updateSupplier</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>SupplierController</servlet-name>
+  	<url-pattern>/supplierLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>DriverController</servlet-name>
+  	<url-pattern>/getDriver</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>DriverController</servlet-name>
+	<url-pattern>/addDriver</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>DriverController</servlet-name>
+	<url-pattern>/updateDriver</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+	<servlet-name>DriverController</servlet-name>
+	<url-pattern>/deleteDriver</url-pattern>
   </servlet-mapping>
 </web-app>
