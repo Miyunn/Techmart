@@ -34,6 +34,9 @@
                 </ul>
               </li>
               <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="getVehicle?action=all">Manage Vehicles</a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="agentLogout.jsp">Logout (Agent1)</a>
               </li>
             </ul>

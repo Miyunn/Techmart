@@ -13,35 +13,29 @@
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Drivers</h2>
+      <h2 class="text-center">Manage Vehicles</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link" aria-current="page" href="getDriver?action=all">All Drivers</a>
+          <a class="nav-link" aria-current="page" href="getVehicle?action=all">All Vehicles</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="search-edit-driver.jsp">Search Driver</a>
+          <a class="nav-link" href="search-edit-vehicle.jsp">Search Vehicle</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link active" href="add-driver.jsp">Add Driver</a>
+          <a class="nav-link active" href="add-vehicle.jsp">Add Vehicle</a>
         </li>
       </ul>
   
   <p>${message}</p>
   
   <div class="container">
-  	<form action = "addDriver" method="post">
-  		<label for="fname" class="form-label">First Name</label>
-  		<input type="text" id="fname" class="form-control" name="fname"/>
+  	<form action = "addVehicle" method="post">
+  		<label for="fname" class="form-label">Vehicle License Number</label>
+  		<input type="text" id="fname" class="form-control" name="vehicleID"/>
 
-      <label for="lname" class="form-label">Last Name</label>
-  		<input type="text" id="lname" class="form-control" name="lname"/>
-
-      <label for="address" class="form-label">Addres</label>
-  		<input type="text" id="address" class="form-control" name="address"/>
-
-      <label for="contact" class="form-label">Contact</label>
-  		<input type="text" id="contact" class="form-control" name="contact"/>
+      <label for="lname" class="form-label">Model</label>
+  		<input type="text" id="lname" class="form-control" name="model"/>
       
       <label for="branch" class="form-label">Select Branch</label>
       <select name="branch" id="branch" class="form-control">
@@ -56,12 +50,11 @@
 
   		<input type="hidden" name="action" value="add"/> <br>
   		
-		<button type="submit" class="btn btn-primary"> Add Driver</button>
+		<button type="submit" class="btn btn-primary"> Add Vehicle</button>
 		
   	</form>
   
   </div>
-  
   
 </body>
 </html>

@@ -34,6 +34,18 @@
   	<description></description>
   	<servlet-class>com.code.techmart.controller.DriverController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>VehicleController</servlet-name>
+  	<display-name>VehicleController</display-name>
+  	<description>controls Vehicle realted functions</description>
+  	<servlet-class>com.code.techmart.controller.VehicleController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>InventoryController</servlet-name>
+  	<display-name>InventoryController</display-name>
+  	<description></description>
+  	<servlet-class>com.code.techmart.controller.InventoryController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
   	<url-pattern>/getProduct</url-pattern>
@@ -125,5 +137,37 @@
   <servlet-mapping>
 	<servlet-name>DriverController</servlet-name>
 	<url-pattern>/deleteDriver</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleController</servlet-name>
+  	<url-pattern>/getVehicle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleController</servlet-name>
+  	<url-pattern>/addVehicle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleController</servlet-name>
+  	<url-pattern>/deleteVehicle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>VehicleController</servlet-name>
+  	<url-pattern>/updateVehicle</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InventoryController</servlet-name>
+  	<url-pattern>/getInventory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InventoryController</servlet-name>
+  	<url-pattern>/addInventory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InventoryController</servlet-name>
+  	<url-pattern>/deleteInventory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>InventoryController</servlet-name>
+  	<url-pattern>/updateInventory</url-pattern>
   </servlet-mapping>
 </web-app>
