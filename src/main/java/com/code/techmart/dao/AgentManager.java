@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.code.techmart.model.Agent;
-import com.mysql.cj.jdbc.interceptors.ConnectionLifecycleInterceptor;
+//import com.mysql.cj.jdbc.interceptors.ConnectionLifecycleInterceptor;
 
 public class AgentManager {
 	

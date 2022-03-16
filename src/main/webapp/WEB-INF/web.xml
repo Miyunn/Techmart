@@ -46,6 +46,24 @@
   	<description></description>
   	<servlet-class>com.code.techmart.controller.InventoryController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>TransactionController</servlet-name>
+  	<display-name>TransactionController</display-name>
+  	<description>Managed Transactions</description>
+  	<servlet-class>com.code.techmart.controller.TransactionController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>AdminController</servlet-name>
+  	<display-name>AdminController</display-name>
+  	<description></description>
+  	<servlet-class>com.code.techmart.controller.AdminController</servlet-class>
+  </servlet>
+  <servlet>
+  	<servlet-name>RequestController</servlet-name>
+  	<display-name>RequestController</display-name>
+  	<description></description>
+  	<servlet-class>com.code.techmart.controller.RequestController</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
   	<url-pattern>/getProduct</url-pattern>
@@ -169,5 +187,41 @@
   <servlet-mapping>
   	<servlet-name>InventoryController</servlet-name>
   	<url-pattern>/updateInventory</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TransactionController</servlet-name>
+  	<url-pattern>/getTransaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TransactionController</servlet-name>
+  	<url-pattern>/addTransaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TransactionController</servlet-name>
+  	<url-pattern>/updateTransaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>TransactionController</servlet-name>
+  	<url-pattern>/deleteTransaction</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>AdminController</servlet-name>
+  	<url-pattern>/adminLogin</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/addRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/getRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/updateRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/deleteRequest</url-pattern>
   </servlet-mapping>
 </web-app>

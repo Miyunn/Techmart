@@ -24,7 +24,7 @@
   <%
   String user = null;
   if(session.getAttribute("sessionusername") == null){
-    response.sendRedirect("Login.jsp");
+    response.sendRedirect("agent-login.jsp");
     
   }
   else user = (String) session.getAttribute("sessionusername");
@@ -40,98 +40,112 @@
   }
   %>
   
-      <jsp:include page="nava.jsp" />
+</head>
+<body>
+ 
+  <jsp:include page="navadmin.jsp" />
 
-      <!--Main Navigation-->
-      <main style="margin-top: 58px">
-        <div class="container pt-4">
-          <section>
-            <div class="row">
-              <div class="col-xl-6 col-md-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between p-md-1">
-                      <div class="d-flex flex-row">
-                        <div class="align-self-center">
-                          <h2 class="h1 mb-0 me-4">Today</h2>
-                        </div>
-                        <div>
-                          <h4><?php echo $date = date('l'); ?></h4>
-                          <p class="mb-0"><?php echo $date = date('jS F Y'); ?></p>
-                        </div>
-                      </div>
-                      <div class="align-self-center">
-                        <i class="fa fa-calendar fa-3x"></i>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>  
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div class="align-self-center">
-                        <i class="fas fa-pencil-alt text-info fa-3x"></i>
-                      </div>
-                      <div class="text-end">
-                        <h3><?php countcls();?></h3>
-                        <p class="mb-0">Number of Classes</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xl-3 col-sm-6 col-12 mb-4">
-                <div class="card">
-                  <div class="card-body">
-                    <div class="d-flex justify-content-between px-md-1">
-                      <div class="align-self-center">
-                        <i class="far fa-user text-success fa-3x"></i>
-                      </div>
-                      <div class="text-end">
-                        <h3>  <?php countteach();?></h3>
-                        <p class="mb-0">Number of Teachers</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-            </div>
-          </section>
-          
-          <section class="mb-4">
+  <!--Main Navigation-->
+  <main style="margin-top: 58px">
+    <div class="container pt-4">
+      <section>
+        <div class="row">
+          <div class="col-xl-6 col-md-12 mb-4">
             <div class="card">
-              <div class="card-header text-center py-3">
-                <h5 class="mb-0 text-center">
-                  <strong>Institute Information</strong>
-                </h5>
-              </div>
               <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <tr>
-                      <td>Institute ID</td>
-                      <td><?php echo $result['iid'] ?></td> 
-                    </tr>
-                    <tr>
-                      <td>Name</td>
-                      <td><?php echo $result['name'] ?></td> 
-                    </tr>
-                    <tr>
-                      <td>Address</td>
-                      <td><?php echo $result['address'] ?></td> 
-                    </tr>
-                    <tr>
-                      <td>Contact</td>
-                      <td><?php echo $result['telephone'] ?></td> 
-                    </tr>
-                    <tr>
-                      <td>Email</td>
-                      <td><?php echo $result['email'] ?></td> 
-                    </tr>
-                  </table>
-                  <a href="instituteedit.php" class="btn btn-primary" style="float: right;"  >EDIT</a>
+                <div class="d-flex justify-content-between p-md-1">
+                  <div class="d-flex flex-row">
+                    <div class="align-self-center">
+                      <h2 class="h1 mb-0 me-4">Last Update</h2>
+                    </div>
+                    <div>
+                      <h4><?php echo $date = date('l'); ?></h4>
+                      <p class="mb-0"><%= (new java.util.Date()).toLocaleString()%></p>
+                    </div>
+                  </div>
+                  <div class="align-self-center">
+                    <i class="fa fa-calendar fa-3x"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>  
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="fas fa-pencil-alt text-info fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3><?php countcls();?></h3>
+                    <p class="mb-0">Total Sales</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 col-12 mb-4">
+            <div class="card">
+              <div class="card-body">
+                <div class="d-flex justify-content-between px-md-1">
+                  <div class="align-self-center">
+                    <i class="far fa-user text-success fa-3x"></i>
+                  </div>
+                  <div class="text-end">
+                    <h3>  <?php countteach();?></h3>
+                    <p class="mb-0">Registered Custoemrs</p>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
-      </main>
+      </section>
+      
+      <section class="mb-4">
+        <div class="card">
+          <div class="card-header text-center py-3">
+            <h5 class="mb-0 text-center">
+              <strong>Sales Summery</strong>
+            </h5>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table">
+                <tr>
+                  <td>Colombo</td>
+                  <td><?php echo $result['iid'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Galle</td>
+                  <td><?php echo $result['name'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Gampaha</td>
+                  <td><?php echo $result['address'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Kurunegala</td>
+                  <td><?php echo $result['telephone'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Kandy</td>
+                  <td><?php echo $result['email'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Jaffna</td>
+                  <td><?php echo $result['email'] ?></td> 
+                </tr>
+                <tr>
+                  <td>Nugegoda</td>
+                  <td><?php echo $result['email'] ?></td> 
+                </tr>
+              </table>
+              <a href="instituteedit.php" class="btn btn-primary" style="float: right;"  >EDIT</a>
+              
+    </div>
+  </main>
+</body>
+</html>
 </body>
 </html>

@@ -23,6 +23,26 @@
 </head>
 <body>
 
+  <%
+  String user = null;
+  if(session.getAttribute("sessionusername") == null){
+    response.sendRedirect("admin-login.jsp");
+    
+  }
+  else user = (String) session.getAttribute("sessionusername");
+  
+  String userName = null;
+  String sessionID = null;
+  Cookie[] cookies = request.getCookies();
+  if(cookies !=null){
+  for(Cookie cookie : cookies){
+    if(cookie.getName().equals("sessionusername")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+  }
+  }
+  %>
+  
+
   <jsp:include page="navadmin.jsp" />
 
 
@@ -50,10 +70,9 @@
     
             <tr>
             <th>Product ID </th>
+            <th>Brand name</th>
             <th>Product Name</th>
-            <th>Product Model</th>
             <th>Product Type</th>
-            <th>On Display</th>
             <th>Price</th>
             <th>Image</th>
             <th>Action</th>
@@ -66,7 +85,6 @@
               <td>${product.getName()}</td>
               <td>${product.getModel()}</td>
               <td>${product.getType()}</td>
-              <td>${product.getDisplay()}</td>
               <td>${product.getPrice()}</td>
               <td>${product.getImage()}</td>
               <td>

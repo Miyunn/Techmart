@@ -9,8 +9,26 @@
 </head>
 <body>
 
-  <jsp:include page="navadmin.jsp" />
+	<%
+	String user = null;
+	if(session.getAttribute("sessionusername") == null){
+	  response.sendRedirect("admin-login.jsp");
+	  
+	}
+	else user = (String) session.getAttribute("sessionusername");
+	
+	String userName = null;
+	String sessionID = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies !=null){
+	for(Cookie cookie : cookies){
+	  if(cookie.getName().equals("sessionusername")) userName = cookie.getValue();
+	  if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+	}
+	}
+	%>
 
+  <jsp:include page="navadmin.jsp" />
 
   <main style="margin-top: 20px">
     <div class="container pt-4">

@@ -68,13 +68,13 @@
         <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Products
+            Extra Links
           </h6>
           <p>
-            <a href="mobiles.jsp" class="text-reset">Mobile Phones</a>
+            <a href="agent-dashboard.jsp" class="text-reset">Sales Agent</a>
           </p>
           <p>
-            <a href="accessories.jsp" class="text-reset">Accessories</a>
+            <a href="supplier-dashboard.jsp" class="text-reset">Supplier</a>
           </p>
         </div>
         <!-- Grid column -->

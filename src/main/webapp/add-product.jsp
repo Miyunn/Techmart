@@ -5,9 +5,28 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>TechMart - Admin</title>
 </head>
 <body>
+
+  <%
+  String user = null;
+  if(session.getAttribute("sessionusername") == null){
+    response.sendRedirect("admin-login.jsp");
+    
+  }
+  else user = (String) session.getAttribute("sessionusername");
+  
+  String userName = null;
+  String sessionID = null;
+  Cookie[] cookies = request.getCookies();
+  if(cookies !=null){
+  for(Cookie cookie : cookies){
+    if(cookie.getName().equals("sessionusername")) userName = cookie.getValue();
+    if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+  }
+  }
+  %>
 
   <jsp:include page="navadmin.jsp" />
 
@@ -42,8 +61,8 @@
   		<label for="productType" class="form-label">Enter Product Type:</label>
   		<input type="text" id=productType" class="form-control" name="productType"/>
 
-		<label for="productModel" class="form-label">Display:</label>
-  		<input type="checkbox" id="productDisplay" name="productDisplay"/>
+		<!-- <label for="productModel" class="form-label">Display:</label> -->
+  		<input type="hidden" id="productDisplay" name="productDisplay"/>
 
 		<label for="Price" class="form-label">Price(LKR):</label>
   		<input type="number" id="Price"  class="form-control"name="Price"/>

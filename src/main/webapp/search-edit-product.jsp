@@ -9,6 +9,26 @@
 </head>
 <body>
 
+	<%
+	String user = null;
+	if(session.getAttribute("sessionusername") == null){
+	  response.sendRedirect("admin-login.jsp");
+	  
+	}
+	else user = (String) session.getAttribute("sessionusername");
+	
+	String userName = null;
+	String sessionID = null;
+	Cookie[] cookies = request.getCookies();
+	if(cookies !=null){
+	for(Cookie cookie : cookies){
+	  if(cookie.getName().equals("sessionusername")) userName = cookie.getValue();
+	  if(cookie.getName().equals("JSESSIONID")) sessionID = cookie.getValue();
+	}
+	}
+	%>
+
+
   <jsp:include page="navadmin.jsp" />
 
 
@@ -73,10 +93,10 @@
 
 	<div class="col-12">
 	  <div class="form-check">
-		<input class="form-check-input" type="checkbox" id="productDisplay" name="productDisplay" value="${product.getDisplay()}"/>
-		<label for="productDisplay" class="form-check-label">
+		<input class="form-check-input" type="hidden" id="productDisplay" name="productDisplay" value="${product.getDisplay()}"/>
+		<!-- <label for="productDisplay" class="form-check-label">
 			Dipslay the product on site
-		</label>
+		</label> -->
 	  </div>
 	</div>
 
