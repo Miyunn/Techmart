@@ -8,8 +8,8 @@ import com.code.techmart.model.Inventory;
 
 public class InventoryService {
 
-	public Inventory getInventoryByID(String BranchName, int itemID) throws ClassNotFoundException, SQLException {
-		return InventoryManager.getInventoryByID(BranchName, itemID);
+	public Inventory getInventoryByID(int recordID) throws ClassNotFoundException, SQLException {
+		return InventoryManager.getInventoryByID(recordID);
 	}
 	
 	public List<Inventory> getAllInventorys() throws ClassNotFoundException, SQLException{
@@ -27,9 +27,9 @@ public class InventoryService {
 		return InventoryManager.updateInventory(inventory);
 	}
 	
-	public boolean deleteInventory(String BranchName, int itemID) throws ClassNotFoundException, SQLException {
+	public boolean deleteInventory(int recordID) throws ClassNotFoundException, SQLException {
 		
-		return InventoryManager.deleteInventory(BranchName, itemID);
+		return InventoryManager.deleteInventory(recordID);
 	}
 	
 }

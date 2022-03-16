@@ -2,20 +2,30 @@ package com.code.techmart.model;
 
 public class Inventory {
     
+    private int recordID;
     private String branchName;
-    private int itemID;
+    private String itemID;
     private String itemName;
-    private int quanity;
-   
+    private String quanity;
+    
     public Inventory() {
-        
+    
     }
 
-    public Inventory(String branchName, int itemID, String itemName, int quanity) {
+    public Inventory(int recordID, String branchName, String itemID, String itemName, String quanity) {
+        this.recordID = recordID;
         this.branchName = branchName;
         this.itemID = itemID;
         this.itemName = itemName;
         this.quanity = quanity;
+    }
+
+    public int getRecordID() {
+        return recordID;
+    }
+
+    public void setRecordID(int recordID) {
+        this.recordID = recordID;
     }
 
     public String getBranchName() {
@@ -26,11 +36,11 @@ public class Inventory {
         this.branchName = branchName;
     }
 
-    public int getItemID() {
+    public String getItemID() {
         return itemID;
     }
 
-    public void setItemID(int itemID) {
+    public void setItemID(String itemID) {
         this.itemID = itemID;
     }
 
@@ -42,13 +52,15 @@ public class Inventory {
         this.itemName = itemName;
     }
 
-    public int getQuanity() {
+    public String getQuanity() {
         return quanity;
     }
 
-    public void setQuanity(int quanity) {
+    public void setQuanity(String quanity) {
         this.quanity = quanity;
     }
+   
+
 
     
 }

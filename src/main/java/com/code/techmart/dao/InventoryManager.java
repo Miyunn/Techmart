@@ -12,15 +12,14 @@ import com.code.techmart.model.Inventory;
 
 public class InventoryManager {
 	
-	public static Inventory getInventoryByID(String branch, int itemID) throws ClassNotFoundException, SQLException{
+	public static Inventory getInventoryByID(int recordID) throws ClassNotFoundException, SQLException{
 		
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 		
-		String query = "SELECT inventory.branch, products.productID, products.name, inventory.quantity FROM inventory INNER JOIN products ON inventory.itemID=products.productID WHERE branch=? AND itemID=?";
+		String query = "SELECT inventory.recordID, inventory.branch, products.productID, products.name, inventory.quantity FROM inventory INNER JOIN products ON inventory.itemID=products.productID WHERE recordID=?";
 		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setString(1, branch);
-		ps.setInt(2, itemID);
+		ps.setInt(1, recordID);
 		
 		ResultSet rs = ps.executeQuery();
 		
@@ -28,10 +27,11 @@ public class InventoryManager {
 		
 		if(rs.next()) {
 			
+			inventory.setRecordID(rs.getInt("recordID"));
 			inventory.setBranchName(rs.getString("branch"));
-			inventory.setItemID(Integer.parseInt("itemID"));
+			inventory.setItemID(rs.getString("productID"));
 			inventory.setItemName(rs.getString("name"));
-			inventory.setQuanity(Integer.parseInt("quanity"));
+			inventory.setQuanity(rs.getString("quantity"));
 		}
 		
 		rs.close();
@@ -45,7 +45,7 @@ public class InventoryManager {
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 		
-		String query = "SELECT inventory.branch, products.productID, products.name, inventory.quantity FROM inventory INNER JOIN products ON inventory.itemID=products.productID";
+		String query = "SELECT inventory.recordID, inventory.branch, products.productID, products.name, inventory.quantity FROM inventory INNER JOIN products ON inventory.itemID=products.productID";
 		Statement st = connection.createStatement();
 		
 		ResultSet rs = st.executeQuery(query);
@@ -53,8 +53,8 @@ public class InventoryManager {
 		List<Inventory> inventorys = new ArrayList<Inventory>();
 		
 		while(rs.next()) {
-			Inventory inventory = new Inventory(rs.getString("branch"),rs.getInt("productID"), rs.getString("name"), 
-					rs.getInt("quantity"));
+			Inventory inventory = new Inventory(rs.getInt("recordID"), rs.getString("branch"), rs.getString("productID"), rs.getString("name"), 
+					rs.getString("quantity"));
 			
 			inventorys.add(inventory);
 		}
@@ -80,8 +80,8 @@ public class InventoryManager {
 		List<Inventory> inventorys = new ArrayList<Inventory>();
 		
 		while(rs.next()) {
-			Inventory inventory = new Inventory(rs.getString("branch"),rs.getInt("productID"), rs.getString("name"), 
-					rs.getInt("quantity"));
+			Inventory inventory = new Inventory(rs.getInt("recordID"), rs.getString("branch"),rs.getString("productID"), rs.getString("name"), 
+					rs.getString("quantity"));
 			
 			inventorys.add(inventory);
 		}
@@ -103,8 +103,8 @@ public class InventoryManager {
 		
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, inventory.getBranchName());
-		ps.setInt(2, inventory.getItemID());
-		ps.setInt(3, inventory.getQuanity());
+		ps.setString(2, inventory.getItemID());
+		ps.setString(3, inventory.getQuanity());
 		
 		boolean result = ps.executeUpdate() >0;
 
@@ -119,12 +119,13 @@ public class InventoryManager {
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 
-		String query = "UPDATE techmart.inventory SET branch=?, itemID=?, quantity=? WHERE branch=? AND itemID=?";
+		String query = "UPDATE techmart.inventory SET branch=?, itemID=?, quantity=? WHERE recordID=?";
 
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, inventory.getBranchName());
-		ps.setInt(2, inventory.getItemID());
-		ps.setInt(2, inventory.getItemID());
+		ps.setString(2, inventory.getItemID());
+		ps.setString(3, inventory.getQuanity());
+		ps.setInt(4, inventory.getRecordID());
 		
 		boolean result = ps.executeUpdate() >0;
 
@@ -134,16 +135,15 @@ public class InventoryManager {
 		 return result;
 	 }
 	 
-	 public static boolean deleteInventory(String branch, int itemID) throws ClassNotFoundException, SQLException {
+	 public static boolean deleteInventory(int recordID) throws ClassNotFoundException, SQLException {
 		
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 
-		String query = "DELETE FROM inventory WHERE branch=? AND itemID=?";
+		String query = "DELETE FROM inventory WHERE recordID=?";
 		PreparedStatement ps = connection.prepareStatement(query);
 
-		ps.setString(1, branch);
-		ps.setInt(2, itemID);
+		ps.setInt(1, recordID);
 
 		boolean result = ps.executeUpdate() > 0;
 

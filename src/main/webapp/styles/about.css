@@ -1,0 +1,46 @@
+
+.jumbotron {
+  background-color: black; /* Orange */
+  color: #ffffff;
+  text-align: center;
+  padding: 100px;
+}
+
+.aboutContainer {
+    position: relative;
+    text-align: center;
+    color: white;
+ 
+  }
+
+.centered {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  #aboutimg{
+      max-width: 100%;
+  }
+
+  .aboutcolumn {
+    float: left;
+    width: 50%;
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+
+  .aboutList{
+      text-align: justify;
+  }
+
+  ul {
+    list-style: none;
+   }
+

@@ -31,5 +31,10 @@ public class AgentService {
 		
 		return AgentManager.deleteAgent(agentID);
 	}
-	
+
+	public Agent searchUser(String username, String password) throws ClassNotFoundException, SQLException {
+		
+		return AgentManager.searchuser(username, password);
+	}
+	 
 }

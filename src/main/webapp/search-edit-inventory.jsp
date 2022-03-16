@@ -33,13 +33,11 @@
 	<h4 style="text-align: left;"> Enter Inventory To View / Edit Data</h4>
 	
 	<form action="getInventory">
-		<label for="inventoryCode" class="form-label">Branch</label>
-		<input id="branch" name="branch" class="form-control" type="text"/>
 
-		<label for="inventoryCode" class="form-label">Item ID</label>
-		<input id="itemID" name="itemID" class="form-control" type="number"/>
+		<label for="inventoryCode" class="form-label"> Record ID </label>
+		<input id="itemID" name="recordID" class="form-control" type="number"/>
 
-		<input type="hidden" name="action" value="single" > <br>
+		<input type="hidden" name="action" value="single"> <br>
 		<button type="submit" class="btn btn-primary">Search</button>
 	</form>
 
@@ -50,6 +48,12 @@
 	<h4 style="text-align: left;">Edit Inventory Data</h4>
  
  <form class="row g-3" action="updateInventory" method="post">
+
+	<div class="col-md-6">
+		<label for="recordID" class="form-label">Record ID</label>
+		<input id="recordID" type="number" name="recordID" class="form-control" value="${inventory.getRecordID()}"/>
+	</div>
+
 	<div class="col-md-6">
 		<label for="inventoryID" class="form-label">Branch</label>
 		<input id="inventoryID" type="text" name="branch" class="form-control" value="${inventory.getBranchName()}"/>
@@ -57,16 +61,17 @@
 
 	<div class="col-md-6">
 		<label for="inventoryName" class="form-label"> Item ID</label>
-		<input type="number" id="model" class="form-control" name="model" value="${inventory.getModel()}"/>
+		<input type="number" id="itemID" class="form-control" name="itemID" value="${inventory.getItemID()}"/>
 	</div>
 
 	<div class="col-md-6">
 		<label for="branch" class="form-label">Quantity</label>
-		<input type="number" id="branch" class="form-control" name="branch" value="${inventory.getQuanity()}"/>
+		<input type="number" id="quantity" class="form-control" name="quantity" value="${inventory.getQuanity()}"/>
 	</div>
 
 	<input type="hidden" name="action" value="update"/>
 	<div class="col-12">
+		<br>
 	  <button type="submit" class="btn btn-primary">Update Inventory</button>
 	</div>
   </form>

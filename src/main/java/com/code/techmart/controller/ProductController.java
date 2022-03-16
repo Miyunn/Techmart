@@ -32,6 +32,11 @@ public class ProductController extends HttpServlet {
 		if(action.equals("all")) {
 			getAllProducts(request, response);
 		}
+
+		else if(action.equals("store-all")){
+			getStoreProducts(request, response);
+		}
+		
 		
 		else {
 			getProduct(request, response);
@@ -79,6 +84,31 @@ public class ProductController extends HttpServlet {
 		request.setAttribute("message", message);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("products.jsp");
+		rd.forward(request, response);
+	}
+
+	private void getStoreProducts(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message ="";
+		ProductService service = new ProductService();
+		try {
+			List<Product> products = service.getAllProducts();
+			
+			if(products.isEmpty()) {
+				message = "No Products found";
+			}
+			
+			request.setAttribute("productList", products);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = e.getMessage();
+		}
+		
+		request.setAttribute("message", message);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("store.jsp");
 		rd.forward(request, response);
 	}
 	

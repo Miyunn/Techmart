@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.code.techmart.model.Agent;
+import com.mysql.cj.jdbc.interceptors.ConnectionLifecycleInterceptor;
 
 public class AgentManager {
 	
@@ -132,6 +133,35 @@ public class AgentManager {
 		connection.close();
 
 		 return result;
+	 }
+	 
+	 public static Agent searchuser(String username, String password) throws SQLException, ClassNotFoundException {
+		 
+			DbConnector connector = new DbConnectorImplMySQL();
+			Connection connection = connector.getConnecion();
+			
+			
+			String query = "SELECT * FROM techmart.agents WHERE email=? AND password=?";
+			PreparedStatement ps = connection.prepareStatement(query);
+			ps.setString(1, username);
+			ps.setString(2, password);
+			
+			System.out.println(username);
+			System.out.println(password);
+			
+			ResultSet rs = ps.executeQuery();
+		
+			Agent agent = null;
+			if(rs.next()) {
+				agent = new Agent();
+				agent.setEmail("email");
+				agent.setPassword("password");
+			}
+			
+			ps.close();
+			connection.close();
+			
+			return agent;
 	 }
 
 }

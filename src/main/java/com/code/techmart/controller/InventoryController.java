@@ -46,15 +46,15 @@ public class InventoryController extends HttpServlet {
 		String action = request.getParameter("action");
 
 		if(action.equals("add")){
-			//addInventory(request, response);
+			addInventory(request, response);
 
 		}
 		else if(action.equals("update")){
-			//updateInventory(request, response);
+			updateInventory(request, response);
 		}
 
 		else if(action.equals("delete")){
-			//deleteInventory(request, response);
+			deleteInventory(request, response);
 		}
 	}
 
@@ -87,14 +87,13 @@ public class InventoryController extends HttpServlet {
 		
 		String message ="";
 		InventoryService service = new InventoryService();
-		String branchName = request.getParameter("branch");
-		int itemID = Integer.parseInt(request.getParameter("itemID"));
+		int recordID = Integer.parseInt(request.getParameter("recordID"));
 		
 		Inventory inventory = new Inventory();
 		try {
-			inventory = service.getInventoryByID(branchName, itemID);
+			inventory = service.getInventoryByID(recordID);
 			if(inventory.getBranchName().isEmpty()) {
-				message = "There's No Inventory Under the Branch :" + branchName + " with the ID ->" + itemID;
+				message = "There's No Inventory Under the Record ID :" + recordID;
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {
@@ -109,90 +108,86 @@ public class InventoryController extends HttpServlet {
 		rd.forward(request, response);
 	}
 
-	// private void addInventory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 private void addInventory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	// 	String message = "";
-	// 	InventoryService service = new InventoryService();
+	 	String message = "";
+	 	InventoryService service = new InventoryService();
 		
-	// 	Inventory inventory = new Inventory();
-	// 	inventory.setfName(request.getParameter("fname"));
-	// 	inventory.setlName(request.getParameter("lname"));
-	// 	inventory.setAddress(request.getParameter("address"));
-	// 	inventory.setContact(request.getParameter("contact"));
-	// 	inventory.setBranch(request.getParameter("branch"));
+	 	Inventory inventory = new Inventory();
+	 	inventory.setBranchName(request.getParameter("branch"));
+	 	inventory.setItemID(request.getParameter("itemID"));
+	 	inventory.setQuanity(request.getParameter("quantity"));
 		
-	// 	try {
-	// 		boolean result = service.addInventory(inventory);
-	// 		if(result) {
-	// 			message = "Inventory Added, Inventory Name : " +inventory.getfName();
-	// 		}
+	 	try {
+	 		boolean result = service.addInventory(inventory);
+	 		if(result) {
+	 			message = "Inventory Record Added";
+	 		}
 			
-	// 		else {
-	// 			message = "Inventory Add Failed! Inventory Name : " +inventory.getfName();
-	// 		}
-	// 	} catch (ClassNotFoundException | SQLException e) {
-	// 		message = e.getMessage();
-	// 	}
+	 		else {
+	 			message = "Inventory Record could not be added";
+	 		}
+	 	} catch (ClassNotFoundException | SQLException e) {
+	 		message = e.getMessage();
+	 	}
 		
-	// 	request.setAttribute("message", message);
-	// 	RequestDispatcher rd = request.getRequestDispatcher("add-inventory.jsp");
+	 	request.setAttribute("message", message);
+	 	RequestDispatcher rd = request.getRequestDispatcher("add-inventory.jsp");
 		
-	// 	rd.forward(request, response);
-	// }
+	 	rd.forward(request, response);
+	 }
 
-	// private void updateInventory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	 private void updateInventory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-	// 	String message = "";
-	// 	InventoryService service = new InventoryService();
+	 	String message = "";
+	 	InventoryService service = new InventoryService();
 		
-	// 	Inventory inventory = new Inventory();
-	// 	inventory.setfName(request.getParameter("fname"));
-	// 	inventory.setlName(request.getParameter("lname"));
-	// 	inventory.setAddress(request.getParameter("address"));
-	// 	inventory.setContact(request.getParameter("contact"));
-	// 	inventory.setBranch(request.getParameter("branch"));
-	// 	inventory.setInventoryID(Integer.parseInt(request.getParameter("inventoryID")));
+	 	Inventory inventory = new Inventory();
+	 	inventory.setBranchName(request.getParameter("branch"));
+	 	inventory.setItemID(request.getParameter("itemID"));
+	 	inventory.setQuanity(request.getParameter("quantity"));
+	 	inventory.setRecordID(Integer.parseInt(request.getParameter("recordID")));
 		
-	// 	try {
-	// 		boolean result = service.updateInventory(inventory);
-	// 		if(result) {
-	// 			message = "Inventory ID : "  + inventory.getInventoryID() + " has been modified";
-	// 		}
+	 	try {
+	 		boolean result = service.updateInventory(inventory);
+	 		if(result) {
+	 			message = "Inventory ID : "  + inventory.getRecordID() + " has been modified";
+	 		}
 			
-	// 		else {
-	// 			message = "Failed to update Inventory! ID : " + inventory.getInventoryID();
-	// 		}
+	 		else {
+	 			message = "Failed to update Inventory! ID : " + inventory.getRecordID();
+	 		}
 			
-	// 	} catch (ClassNotFoundException | SQLException e) {
-	// 		message = e.getMessage();
+	 	} catch (ClassNotFoundException | SQLException e) {
+	 		message = e.getMessage();
 			
-	// 	}
+	 	}
 		
 		
-	// 	request.setAttribute("message", message);
+	 	request.setAttribute("message", message);
 		
-	// 	RequestDispatcher rd = request.getRequestDispatcher("search-edit-inventory.jsp");
-	// 	rd.forward(request, response);
+	 	RequestDispatcher rd = request.getRequestDispatcher("search-edit-inventory.jsp");
+	 	rd.forward(request, response);
 		
-	// }
+	 }
 
-	// private void deleteInventory(HttpServletRequest request, HttpServletResponse response) throws IOException {
+	 private void deleteInventory(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-	// 	String message = "";
-	// 	int inventoryID = Integer.parseInt(request.getParameter("inventoryID"));
-	// 	InventoryService service = new InventoryService();
-	// 	try {
-	// 		service.deleteInventory(inventoryID);
-	// 	} catch (ClassNotFoundException | SQLException e) {
+	 	String message = "";
+	 	int recordID = Integer.parseInt(request.getParameter("recordID"));
+	 	InventoryService service = new InventoryService();
+	 	try {
+	 		service.deleteInventory(recordID);
+	 	} catch (ClassNotFoundException | SQLException e) {
 			
-	// 		message=e.getMessage();
-	// 	}
+	 		message=e.getMessage();
+	 	}
 		
-	// 	HttpSession session = request.getSession();
-	// 	session.setAttribute("deleteMsg", message);
+	 	HttpSession session = request.getSession();
+	 	session.setAttribute("deleteMsg", message);
 		
-	// 	response.sendRedirect("/techmart/getInventory?action=all");
-	// }
+	 	response.sendRedirect("/techmart/getInventory?action=all");
+	 }
 
 }
 

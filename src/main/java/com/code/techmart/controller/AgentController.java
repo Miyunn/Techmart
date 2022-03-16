@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -55,6 +56,10 @@ public class AgentController extends HttpServlet {
 
 		else if(action.equals("delete")){
 			deleteAgent(request, response);
+		}
+
+		else if(action.equals("login")){
+			agentLogin(request, response);
 		}
 
 	}
@@ -194,6 +199,76 @@ public class AgentController extends HttpServlet {
 		session.setAttribute("deleteMsg", message);
 		
 		response.sendRedirect("/techmart/getAgent?action=all");
+	}
+
+	public void agentLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		AgentService service = new AgentService();
+		
+		Agent agent = new Agent();
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String type = "agent";
+		
+		String message ="";
+		
+		try 
+		{
+			agent = service.searchUser(username, password);
+			HttpSession session = request.getSession();
+			
+			if(agent !=null) {
+				
+				session.setAttribute("sessionusername", username);
+				session.setAttribute("type", type);
+				
+				 session.setMaxInactiveInterval(30*60);
+				  
+				 Cookie userName = new Cookie("sessionusername", username);
+				 userName.setMaxAge(30*60); response.addCookie(userName);
+				 
+				 Cookie atype = new Cookie("sessiontype", type);
+				 atype.setMaxAge(30*60); response.addCookie(atype);
+				
+				try 
+				{
+					response.sendRedirect("agent-dashboard.jsp");
+				} 
+				catch (IOException e) 
+				{
+					message = e.getMessage();
+				}
+				
+				/*
+				 * try { response.sendRedirect("index.jsp?sessionuname="+uname+"");
+				 * //response.sendRedirect("doctorAddRecord.jsp?sessionuname="+uname+""); }
+				 * catch (IOException ex) {
+				 * 
+				 * message = ex.getMessage(); }
+				 */
+			}
+			else 
+			{
+				try 
+				{
+					response.sendRedirect("agent-login.jsp");
+					message = "No User Found!";	
+				} catch (IOException es) {
+					
+					message = es.getMessage();
+				}	
+			}
+			
+			session.setAttribute("loginMessage", message);
+			
+		} 
+		catch (ClassNotFoundException | SQLException e) {
+		
+			message = e.getMessage();
+		}
+		
+		 
 	}
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,31 +14,35 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="admin-dashboard.jsp">TechMart (Admin)</a>
+          <a class="navbar-brand" href="agentHome.jsp">TechMart Agent</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
+            
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="getProduct?action=all">Manage Products</a>
+                <a class="nav-link" aria-current="page" href="agentLogout.jsp">View Products</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Manage User
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="getCustomer?action=all">Customers</a></li>
-                  <li><a class="dropdown-item" href="getAgent?action=all">Agents</a></li>
-                  <li><a class="dropdown-item" href="getSupplier?action=all">Suppliers</a></li>
-                  <li><a class="dropdown-item" href="getDriver?action=all">Driver</a></li>
-                </ul>
-              </li>
+
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="getVehicle?action=all">Manage Vehicles</a>
+                <a class="nav-link" aria-current="page" href="agentLogout.jsp">Manage Inventory</a>
               </li>
+
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="agentLogout.jsp">Logout (Agent1)</a>
+                <a class="nav-link" aria-current="page" href="agentLogout.jsp">View Sales</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="agentLogout.jsp">Manage Delivery</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="logout.jsp">Logout()</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" href="notifications.jsp">Notifications(0) </a>
               </li>
             </ul>
           </div>
