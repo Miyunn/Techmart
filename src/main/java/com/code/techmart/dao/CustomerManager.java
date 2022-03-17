@@ -137,4 +137,31 @@ public class CustomerManager {
 		 return result;
 	 }
 
+	 public static Customer searchuser(String username, String password) throws SQLException, ClassNotFoundException {
+		 
+		DbConnector connector = new DbConnectorImplMySQL();
+		Connection connection = connector.getConnecion();
+		
+		String query = "SELECT * FROM techmart.customers WHERE username=? AND password=?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, username);
+		ps.setString(2, password);
+		
+		ResultSet rs = ps.executeQuery();
+	
+		Customer customer = null;
+		if(rs.next()) {
+			customer = new Customer();
+			customer.setCustomerID(rs.getInt("customerID"));
+			customer.setEmail("username");
+			customer.setPassword("password");
+			customer.setBranch("password");
+		}
+		
+		ps.close();
+		connection.close();
+		
+		return customer;
+ }
+
 }

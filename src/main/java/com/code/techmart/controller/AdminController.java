@@ -40,7 +40,7 @@ public class AdminController extends HttpServlet {
 
 	public void adminLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
-		AdminService service = new AdminService();
+		AdminService service = AdminService.getAdminServiceInstance();
 		
 		Admin admin = new Admin();
 		
@@ -77,20 +77,13 @@ public class AdminController extends HttpServlet {
 					message = e.getMessage();
 				}
 				
-				/*
-				 * try { response.sendRedirect("index.jsp?sessionuname="+uname+"");
-				 * //response.sendRedirect("doctorAddRecord.jsp?sessionuname="+uname+""); }
-				 * catch (IOException ex) {
-				 * 
-				 * message = ex.getMessage(); }
-				 */
 			}
 			else 
 			{
 				try 
 				{
 					response.sendRedirect("admin-login.jsp");
-					message = "No User Found!";	
+					message = "Please Check Username and Password";	
 				} catch (IOException es) {
 					
 					message = es.getMessage();

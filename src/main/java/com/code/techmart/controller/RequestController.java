@@ -100,10 +100,10 @@ public class RequestController extends HttpServlet {
 		RequestService service = new RequestService();
 		int requestID = Integer.parseInt(request.getParameter("requestCode"));
 		
-		Request request = new Request();
+		Request restockrequest = new Request();
 		try {
-			request = service.getRequestByID(requestID);
-			if(request.getfName().isEmpty()) {
+			restockrequest = service.getRequestByID(requestID);
+			if(restockrequest.getStatus().isEmpty()) {
 				message = "There's No Request Under the ID" + requestID;
 			}
 			
@@ -124,24 +124,23 @@ public class RequestController extends HttpServlet {
 		String message = "";
 		RequestService service = new RequestService();
 		
-		Request request = new Request();
-		request.setfName(request.getParameter("fname"));
-		request.setlName(request.getParameter("lname"));
-		request.setAddress(request.getParameter("address"));
-		request.setContact(request.getParameter("contact"));
-		request.setBranch(request.getParameter("branch"));
-		request.setEmail(request.getParameter("email"));
-		request.setPassword(request.getParameter("password"));
+		Request restockrequest = new Request();
+		restockrequest.setBranch(request.getParameter("branch"));;
+		restockrequest.setProductID(Integer.parseInt(request.getParameter("productID")));
+		restockrequest.setQuantity(Integer.parseInt(request.getParameter("quantiy")));
+		restockrequest.setSupplier(Integer.parseInt(request.getParameter("supplier")));
+		restockrequest.setStatus(request.getParameter("status"));
 		
 		try {
 			boolean result = service.addRequest(request);
 			if(result) {
-				message = "Request Added, Request Name : " +request.getfName();
+				message = "Request added for Product : " +restockrequest.getProductID();
 			}
 			
 			else {
-				message = "Request Add Failed! Request Name : " +request.getfName();
+				message = "Request Add Failed!";
 			}
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			message = e.getMessage();
 		}
@@ -157,24 +156,22 @@ public class RequestController extends HttpServlet {
 		String message = "";
 		RequestService service = new RequestService();
 		
-		Request request = new Request();
-		request.setfName(request.getParameter("fname"));
-		request.setlName(request.getParameter("lname"));
-		request.setAddress(request.getParameter("address"));
-		request.setContact(request.getParameter("contact"));
-		request.setBranch(request.getParameter("branch"));
-		request.setEmail(request.getParameter("email"));
-		request.setPassword(request.getParameter("password"));
-		request.setRequestID(Integer.parseInt(request.getParameter("requestID")));
+		Request restockrequest = new Request();
+		restockrequest.setId(Integer.parseInt(request.getParameter("id")));
+		restockrequest.setBranch(request.getParameter("branch"));;
+		restockrequest.setProductID(Integer.parseInt(request.getParameter("productID")));
+		restockrequest.setQuantity(Integer.parseInt(request.getParameter("quantiy")));
+		restockrequest.setSupplier(Integer.parseInt(request.getParameter("supplier")));
+		restockrequest.setStatus(request.getParameter("status"));
 		
 		try {
-			boolean result = service.updateRequest(request);
+			boolean result = service.getSupplierRequests();
 			if(result) {
-				message = "Request ID : "  + request.getRequestID() + " has been modified";
+				message = "Request ID : "  + restockrequest.getId() + " has been modified";
 			}
 			
 			else {
-				message = "Failed to update Request! ID : " + request.getRequestID();
+				message = "Failed to update Request! ID : " + restockrequest.getId();
 			}
 			
 		} catch (ClassNotFoundException | SQLException e) {

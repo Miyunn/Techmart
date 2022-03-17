@@ -46,8 +46,11 @@
             
                         <div class="d-grid gap-2 my-4">
             
-                        <a href="#" class="btn btn-warning bold-btn">add to cart</a>
-            
+                      <form action="deleteAgent" method="post">
+		                  <input type="hidden" name="action" value="purchase"/>
+		                  <input type="hidden" name="agentID" value="${session.getAttribute("userID")}/>
+		                  <button type="submit" class="btn btn-danger">Delete</button>
+                	</form>
                         </div>
                     </div>
                     </div>

@@ -32,4 +32,9 @@ public class CustomerService {
 		return CustomerManager.deleteCustomer(customerID);
 	}
 	
+	public Customer searchUser(String username, String password) throws ClassNotFoundException, SQLException{
+		
+		return CustomerManager.searchuser(username, password);
+	}
+	
 }

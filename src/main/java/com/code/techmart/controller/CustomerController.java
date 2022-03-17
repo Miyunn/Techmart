@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +55,10 @@ public class CustomerController extends HttpServlet {
 
 		else if(action.equals("delete")){
 			deleteCustomer(request, response);
+		}
+
+		else if(action.equals("login")){
+			customerLogin(request, response);
 		}
 	}
 
@@ -194,6 +199,79 @@ public class CustomerController extends HttpServlet {
 		session.setAttribute("deleteMsg", message);
 		
 		response.sendRedirect("/techmart/getCustomer?action=all");
+	}
+
+
+	public void customerLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		CustomerService service = new CustomerService();
+		Customer customer = new Customer();
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String type = "customer";
+		String userID = null;
+		String branch = null;
+		
+		String message ="";
+		
+		try 
+		{
+			customer = service.searchUser(username, password);
+			HttpSession session = request.getSession();
+			
+			if(customer !=null) {
+				
+				session.setAttribute("sessionusername", username);
+				session.setAttribute("type", type);
+				session.setAttribute("userID", customer.getCustomerID());
+				session.setAttribute("branch", customer.getBranch());
+				
+				 session.setMaxInactiveInterval(30*60);
+				  
+				 Cookie userName = new Cookie("sessionusername", username);
+				 userName.setMaxAge(30*60); response.addCookie(userName);
+				 
+				 Cookie atype = new Cookie("sessiontype", type);
+				 atype.setMaxAge(30*60); response.addCookie(atype);
+				 
+				 Cookie userid = new Cookie("sessionUserID", userID);
+				 userid.setMaxAge(30*60); response.addCookie(userid);
+				 
+				 Cookie branchh = new Cookie("sessionBranch", branch);
+				 branchh.setMaxAge(30*60); response.addCookie(branchh);
+				
+				try 
+				{
+					response.sendRedirect("index.jsp");
+				} 
+				catch (IOException e) 
+				{
+					message = e.getMessage();
+				}
+				
+			}
+			else 
+			{
+				try 
+				{
+					response.sendRedirect("customer-login.jsp");
+					message = "Please Check Username and Password";	
+				} catch (IOException es) {
+					
+					message = es.getMessage();
+				}	
+			}
+			
+			session.setAttribute("loginMessage", message);
+			
+		} 
+		catch (ClassNotFoundException | SQLException e) {
+		
+			message = e.getMessage();
+		}
+		
+		 
 	}
 
 }
