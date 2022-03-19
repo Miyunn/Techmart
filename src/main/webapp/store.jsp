@@ -45,12 +45,20 @@
                         </h5>
             
                         <div class="d-grid gap-2 my-4">
+            			<%
+            			System.out.println(session.getAttribute("sessionUserID"));
+            			%>
+        
+            			<form action="addTransaction" method="post">
+            				<input type="hidden" name=action value="add"/>
+            				<input type="hidden" name="customerID" value="${sessionScope.sessionUserID}"/>
+            				<input type="hidden" name="productID" value="${product.getId()}"/>
+            				 <input type="hidden" name="branch" value="${sessionScope.sessionBranch}"/>
+            				  <input type="hidden" name="quantity" value="1"/>
+            				  <input type="hidden" name="total" value="${product.getPrice()}"/>
+            				  <button type="submit" class="btn btn-warning bold-btn">BUY</button>
+            			</form>
             
-                      <form action="deleteAgent" method="post">
-		                  <input type="hidden" name="action" value="purchase"/>
-		                  <input type="hidden" name="agentID" value="${session.getAttribute("userID")}/>
-		                  <button type="submit" class="btn btn-danger">Delete</button>
-                	</form>
                         </div>
                     </div>
                     </div>

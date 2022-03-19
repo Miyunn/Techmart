@@ -112,19 +112,18 @@ public class TransactionController extends HttpServlet {
 		String message = "";
 		TransactionService service = new TransactionService();
 
-		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		double unitprice = Double.parseDouble(request.getParameter("unitprice"));
-		double total = quantity * unitprice;
+		//int quantity = Integer.parseInt(request.getParameter("quantity"));
+		String status = "Pending";
 
 		
 		Transaction transaction = new Transaction();
-		transaction.setCustomerID(Integer.parseInt(request.getParameter("customerID")));
+		transaction.setCustomerID(request.getParameter("customerID"));
 		transaction.setProductID(Integer.parseInt(request.getParameter("productID")));
 		transaction.setBranch(request.getParameter("branch"));
-		transaction.setQuantity(quantity);
-		transaction.setUnitprice(unitprice);
-		transaction.setTotal(total);
-		transaction.setStatus(request.getParameter("status"));
+		transaction.setQuantity(1);
+		transaction.setUnitprice(request.getParameter("total"));
+		transaction.setTotal(request.getParameter("total"));
+		transaction.setStatus(status);
 		
 		try {
 			boolean result = service.addTransaction(transaction);
@@ -140,7 +139,7 @@ public class TransactionController extends HttpServlet {
 		}
 		
 		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("add-transaction.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("getProduct?action=store-all");
 		
 		rd.forward(request, response);
 	}
@@ -151,17 +150,17 @@ public class TransactionController extends HttpServlet {
 		TransactionService service = new TransactionService();
 
 		int quantity = Integer.parseInt(request.getParameter("quantity"));
-		double unitprice = Double.parseDouble(request.getParameter("unitprice"));
-		double total = quantity * unitprice;
+		//double unitprice = (request.getParameter("unitprice"));
+		//double total = quantity * unitprice;
 
 		
 		Transaction transaction = new Transaction();
-		transaction.setCustomerID(Integer.parseInt(request.getParameter("customerID")));
+		transaction.setCustomerID(request.getParameter("customerID"));
 		transaction.setProductID(Integer.parseInt(request.getParameter("productID")));
 		transaction.setBranch(request.getParameter("branch"));
 		transaction.setQuantity(quantity);
-		transaction.setUnitprice(unitprice);
-		transaction.setTotal(total);
+		//transaction.setUnitprice(unitprice);
+		//transaction.setTotal(total);
 		transaction.setStatus(request.getParameter("status"));
 		transaction.setTransactionID(Integer.parseInt(request.getParameter("transactionID")));
 		

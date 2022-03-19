@@ -30,7 +30,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="agentLogout.jsp">View Sales</a>
+                <a class="nav-link" aria-current="page" href="agentLogout.jsp">Manage Transactions</a>
               </li>
 
               <li class="nav-item">
@@ -38,11 +38,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="logout.jsp">Logout()</a>
-              </li>
-
-              <li class="nav-item">
-                <a class="nav-link" href="notifications.jsp">Notifications(0) </a>
+                <a class="nav-link" aria-current="page" href="logout.jsp">Logout</a>
               </li>
             </ul>
           </div>

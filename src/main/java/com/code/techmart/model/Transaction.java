@@ -3,19 +3,19 @@ package com.code.techmart.model;
 public class Transaction {
     
     private int transactionID;
-    private int customerID;
+    private String customerID;
     private int productID;
     private String branch;
     private int quantity;
-    private double unitprice;
-    private double total;
+    private String unitprice;
+    private String total;
     private String status;
    
     public Transaction() {
     }
 
-    public Transaction(int transactionID, int customerID, int productID, String branch, int quantity, double unitprice,
-            double total, String status) {
+    public Transaction(int transactionID, String customerID, int productID, String branch, int quantity, String unitprice,
+    		String total, String status) {
         this.transactionID = transactionID;
         this.customerID = customerID;
         this.productID = productID;
@@ -34,11 +34,11 @@ public class Transaction {
         this.transactionID = transactionID;
     }
 
-    public int getCustomerID() {
+    public String getCustomerID() {
         return customerID;
     }
 
-    public void setCustomerID(int customerID) {
+    public void setCustomerID(String customerID) {
         this.customerID = customerID;
     }
 
@@ -66,19 +66,19 @@ public class Transaction {
         this.quantity = quantity;
     }
 
-    public double getUnitprice() {
+    public String getUnitprice() {
         return unitprice;
     }
 
-    public void setUnitprice(double unitprice) {
-        this.unitprice = unitprice;
+    public void setUnitprice(String unitprice2) {
+        this.unitprice = unitprice2;
     }
 
-    public double getTotal() {
+    public String getTotal() {
         return total;
     }
 
-    public void setTotal(double total) {
+    public void setTotal(String total) {
         this.total = total;
     }
 

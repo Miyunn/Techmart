@@ -24,7 +24,7 @@
   <%
   String user = null;
   if(session.getAttribute("sessionusername") == null){
-    response.sendRedirect("admin-login.jsp");
+    response.sendRedirect("supplier-login.jsp");
     
   }
   else user = (String) session.getAttribute("sessionusername");
@@ -68,62 +68,61 @@
     </div>
   </main>
 
-    <main style="margin-top: 20px">
-      <div class="container pt-4">
-        <h2 class="text-center">Manage Products</h2>
-        
-        <ul class="nav nav-tabs" style="margin-top: 20px;">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="getProduct?action=all">All Requests</a>
-          </li>
-        </ul>
-        
-        <p>${message}</p>
-        <p>${deleteMsg}</p>
-  
-        <div class="table-responsive">
-          <table class="table" style="width:100%">
+  <main style="margin-top: 20px">
+    <div class="container pt-4">
+      <h2 class="text-center">Manage Products</h2>
       
-              <tr>
-              <th>Request ID </th>
-              <th>Branch</th>
-              <th>Product ID</th>
-              <th>Quantity</th>
-              <th>Action</th>
+      <ul class="nav nav-tabs" style="margin-top: 20px;">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="getProduct?action=all">All Requests</a>
+        </li>
+      </ul>
+      
+      <p>${message}</p>
+      <p>${deleteMsg}</p>
+
+      <div class="table-responsive">
+        <table class="table" style="width:100%">
+    
+            <tr>
+            <th>Request ID </th>
+            <th>Branch</th>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Action</th>
+          </tr>
+          
+
+            <tag:forEach var="product" items="${productList}">
+            <tr>
+              <td>${product.getId()}</td>
+              <td>${product.getBranch()}</td>
+              <td>${product.getProductID()}</td>
+              <td>${product.getQuantity()}</td>
+              <td>
+
+                <form action="confirmRequest" method="post">
+                  <input type="hidden" name="action" value="delete"/>
+                  <input type="hidden" name="productID" value="${request.getId()}"/>
+                  <button type="submit" class="btn btn-warning">Confirm</button>
+                </form>
+
+                <form action="rejectRequest" method="post">
+                  <input type="hidden" name="action" value="delete"/>
+                  <input type="hidden" name="productID" value="${request.getId()}"/>
+                  <button type="submit" class="btn btn-danger">Reject</button>
+                </form>
+              
+              </td>
             </tr>
-            
-  
-              <tag:forEach var="product" items="${productList}">
-              <tr>
-                <td>${product.getId()}</td>
-                <td>${product.getBranch()}</td>
-                <td>${product.getProductID()}</td>
-                <td>${product.getQuantity()}</td>
-                <td>
+            </tag:forEach>
 
-                  <form action="confirmRequest" method="post">
-                    <input type="hidden" name="action" value="delete"/>
-                    <input type="hidden" name="productID" value="${request.getId()}"/>
-                    <button type="submit" class="btn btn-warning">Confirm</button>
-                  </form>
-
-                  <form action="rejectRequest" method="post">
-                    <input type="hidden" name="action" value="delete"/>
-                    <input type="hidden" name="productID" value="${request.getId()}"/>
-                    <button type="submit" class="btn btn-danger">Reject</button>
-                  </form>
-                
-                </td>
-              </tr>
-              </tag:forEach>
-  
-     
-          </table>
-        </div>
+   
+        </table>
       </div>
-  
-  </main>
+    </div>
 
+</main>
 
 </body>
 </html>

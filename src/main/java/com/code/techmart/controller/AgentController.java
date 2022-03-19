@@ -240,13 +240,6 @@ public class AgentController extends HttpServlet {
 					message = e.getMessage();
 				}
 				
-				/*
-				 * try { response.sendRedirect("index.jsp?sessionuname="+uname+"");
-				 * //response.sendRedirect("doctorAddRecord.jsp?sessionuname="+uname+""); }
-				 * catch (IOException ex) {
-				 * 
-				 * message = ex.getMessage(); }
-				 */
 			}
 			else 
 			{

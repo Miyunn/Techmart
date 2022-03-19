@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,31 +26,15 @@
               <li class="nav-item">
                 <a class="nav-link" aria-current="page" href="index.jsp">Home</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Products
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="getProduct?action=store-all">All Products</a></li>
-                  <li><a class="dropdown-item" href="#">Mobile Phones</a></li>
-                  <li><a class="dropdown-item" href="#">Accessories</a></li>
-                </ul>
+              <li class="nav-item">
+                <a class="nav-link" href="getProduct?action=store-all">Products</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="about.jsp">About Us</a>
               </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  User 1
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="acccountSettings.jsp">Settings</a></li>
-                  <li><a class="dropdown-item" href="#">Logout</a></li>
-                </ul>
-              </li>
               <li class="nav-item">
-                <a class="nav-link" href="notifications.jsp">Notifications(0) </a>
-              </li>
+              <a class="nav-link" href="customer-login.jsp">Login / Logout <% System.out.print (session.getAttribute("sessionusername"));%></a>
+            </li>
             </ul>
           </div>
         </div>

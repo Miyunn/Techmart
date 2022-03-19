@@ -20,7 +20,7 @@
   <%
   String user = null;
   if(session.getAttribute("sessionusername") == null){
-    response.sendRedirect("agent-login.jsp");
+    response.sendRedirect("supplier-login.jsp");
     
   }
   else user = (String) session.getAttribute("sessionusername");
@@ -39,7 +39,7 @@
 </head>
 <body>
  
-  <jsp:include page="navadmin.jsp" />
+  <jsp:include page="nava.jsp" />
 
   <!--Main Navigation-->
   <main style="margin-top: 58px">

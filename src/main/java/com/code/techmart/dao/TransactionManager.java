@@ -28,12 +28,12 @@ public class TransactionManager {
 		if(rs.next()) {
 			
 			transaction.setTransactionID(rs.getInt("transactionID"));
-			transaction.setCustomerID(rs.getInt("customerID"));
+			transaction.setCustomerID(rs.getString("customerID"));
 			transaction.setProductID(rs.getInt("productID"));
 			transaction.setBranch(rs.getString("branch"));
 			transaction.setQuantity(rs.getInt("quantity"));
-			transaction.setUnitprice(rs.getDouble("unitprice"));
-			transaction.setTotal(rs.getDouble("total"));
+			transaction.setUnitprice(rs.getString("unitprice"));
+			transaction.setTotal(rs.getString("total"));
 			transaction.setStatus(rs.getString("status"));
 		}
 		
@@ -56,9 +56,9 @@ public class TransactionManager {
 		List<Transaction> transactions = new ArrayList<Transaction>();
 		
 		while(rs.next()) {
-			Transaction transaction = new Transaction(rs.getInt("transactionID"), rs.getInt("customerID"), 
+			Transaction transaction = new Transaction(rs.getInt("transactionID"), rs.getString("customerID"), 
 					rs.getInt("productID"), rs.getString("branch"), rs.getInt("quantity"), 
-					rs.getDouble("unitprice"), rs.getDouble("total"), rs.getString("status"));
+					rs.getString("unitprice"), rs.getString("total"), rs.getString("status"));
 			
 			transactions.add(transaction);
 		}
@@ -84,9 +84,9 @@ public class TransactionManager {
 		List<Transaction> transactions = new ArrayList<Transaction>();
 		
 		while(rs.next()) {
-			Transaction transaction = new Transaction(rs.getInt("transactionID"), rs.getInt("customerID"), 
+			Transaction transaction = new Transaction(rs.getInt("transactionID"), rs.getString("customerID"), 
 					rs.getInt("productID"), rs.getString("branch"), rs.getInt("quantity"), 
-					rs.getDouble("unitprice"), rs.getDouble("total"), rs.getString("status"));
+					rs.getString("unitprice"), rs.getString("total"), rs.getString("status"));
 			
 			transactions.add(transaction);
 		}
@@ -106,12 +106,12 @@ public class TransactionManager {
 		String query = "INSERT INTO transactions (customerID, productID, branch, quantity, unitprice, total, status) VALUES (?,?,?,?,?,?,?)";
 		
 		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setInt(1, transaction.getCustomerID());
+		ps.setString(1, transaction.getCustomerID());
 		ps.setInt(2, transaction.getProductID());
 		ps.setString(3, transaction.getBranch());
 		ps.setInt(4, transaction.getQuantity());
-		ps.setDouble(5, transaction.getUnitprice());
-		ps.setDouble(6, transaction.getTotal());
+		ps.setString(5, transaction.getUnitprice());
+		ps.setString(6, transaction.getTotal());
 		ps.setString(7, transaction.getStatus());
 		
 		boolean result = ps.executeUpdate() >0;
@@ -130,12 +130,12 @@ public class TransactionManager {
 		String query = "UPDATE techmart.transactions SET customerID=?, productID=?, branch=?, quantity=?, unitprice=?, total=?, status=? WHERE transactionID=?";
 
 		PreparedStatement ps = connection.prepareStatement(query);
-		ps.setInt(1, transaction.getCustomerID());
+		ps.setString(1, transaction.getCustomerID());
 		ps.setInt(2, transaction.getProductID());
 		ps.setString(4, transaction.getBranch());
 		ps.setInt(5, transaction.getQuantity());
-		ps.setDouble(3, transaction.getUnitprice());
-		ps.setDouble(6, transaction.getTotal());
+		ps.setString(3, transaction.getUnitprice());
+		ps.setString(6, transaction.getTotal());
 		ps.setString(7, transaction.getStatus());
 		
 		boolean result = ps.executeUpdate() >0;

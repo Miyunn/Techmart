@@ -142,7 +142,7 @@ public class CustomerManager {
 		DbConnector connector = new DbConnectorImplMySQL();
 		Connection connection = connector.getConnecion();
 		
-		String query = "SELECT * FROM techmart.customers WHERE username=? AND password=?";
+		String query = "SELECT * FROM techmart.customers WHERE email=? AND password=?";
 		PreparedStatement ps = connection.prepareStatement(query);
 		ps.setString(1, username);
 		ps.setString(2, password);
@@ -153,9 +153,13 @@ public class CustomerManager {
 		if(rs.next()) {
 			customer = new Customer();
 			customer.setCustomerID(rs.getInt("customerID"));
-			customer.setEmail("username");
-			customer.setPassword("password");
-			customer.setBranch("password");
+			customer.setfName(rs.getString("firstName"));
+			customer.setlName(rs.getString("lastName"));
+			customer.setAddress(rs.getString("address"));
+			customer.setContact(rs.getString("telno"));
+			customer.setBranch(rs.getString("location"));
+			customer.setEmail(rs.getString("email"));
+			customer.setPassword(rs.getString("password"));
 		}
 		
 		ps.close();

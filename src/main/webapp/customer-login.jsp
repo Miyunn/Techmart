@@ -19,7 +19,7 @@
    
     <div class="sidenav">
         <div class="login-main-text">
-           <h2>Tech Mart<br> Admin Portal</h2>
+           <h2>Techmart<br> Customer Portal</h2>
            <p>Login from here to access</p>
         </div>
      </div>
@@ -40,6 +40,7 @@
                  
                  <input type="hidden" name="action" value="login">
                  <button type="submit" class="btn btn-black">Login</button>
+                  <a href="register.jsp"><button type="button" class="btn btn-black">Register</button></a>
               </form>
               
               	<p>${loginMessage}</p>

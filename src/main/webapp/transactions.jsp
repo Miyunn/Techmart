@@ -72,7 +72,7 @@
             <th>Customer ID</th>
             <th>Product ID</th>
             <th>Branch</th>
-            <th>Quantity/th>
+            <th>Quantity</th>
             <th>Unit Price</th>
             <th>Total</th>
             <th>Status</th>

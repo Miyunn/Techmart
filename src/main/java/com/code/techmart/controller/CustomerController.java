@@ -223,9 +223,14 @@ public class CustomerController extends HttpServlet {
 			if(customer !=null) {
 				
 				session.setAttribute("sessionusername", username);
-				session.setAttribute("type", type);
-				session.setAttribute("userID", customer.getCustomerID());
-				session.setAttribute("branch", customer.getBranch());
+				session.setAttribute("sessiontype", type);
+				session.setAttribute("sessionUserID", customer.getCustomerID());
+				session.setAttribute("sessionBranch", customer.getBranch());
+				
+			
+				
+				System.out.println(session.getAttribute("sessionUserID"));
+				System.out.println(session.getAttribute("sessionBranch"));
 				
 				 session.setMaxInactiveInterval(30*60);
 				  
@@ -241,16 +246,10 @@ public class CustomerController extends HttpServlet {
 				 Cookie branchh = new Cookie("sessionBranch", branch);
 				 branchh.setMaxAge(30*60); response.addCookie(branchh);
 				
-				try 
-				{
-					response.sendRedirect("index.jsp");
-				} 
-				catch (IOException e) 
-				{
-					message = e.getMessage();
-				}
-				
+		
+				response.sendRedirect("getProduct?action=store-all");
 			}
+	
 			else 
 			{
 				try 

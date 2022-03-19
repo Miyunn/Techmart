@@ -14,7 +14,8 @@ public class AdminManager {
 			DbConnector connector = new DbConnectorImplMySQL();
 			Connection connection = connector.getConnecion();
 			
-			String query = "SELECT * FROM techmart.admin WHERE username=? AND password=?";
+			String query = "CALL getAdminLogin(?,?)";
+
 			PreparedStatement ps = connection.prepareStatement(query);
 			ps.setString(1, username);
 			ps.setString(2, password);
