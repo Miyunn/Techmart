@@ -6,12 +6,14 @@ import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.code.techmart.model.Supplier;
+import com.code.techmart.services.AgentService;
 import com.code.techmart.services.SupplierService;
 
 
@@ -56,6 +58,11 @@ public class SupplierController extends HttpServlet {
 		else if(action.equals("delete")){
 			deleteSupplier(request, response);
 		}
+
+		else if(action.equals("login")){
+			supplierLogin(request, response);
+		}
+	
 
 	}
 
@@ -196,5 +203,67 @@ public class SupplierController extends HttpServlet {
 		response.sendRedirect("/techmart/getSupplier?action=all");
 	}
 
+	public void supplierLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		SupplierService service = new SupplierService();
+		
+		Supplier supplier = new Supplier();
+		
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String type = "supplier";
+		
+		String message ="";
+		
+		try 
+		{
+			supplier = service.searchUser(username, password);
+			HttpSession session = request.getSession();
+			
+			if(supplier !=null) {
+				
+				session.setAttribute("sessionusername", username);
+				session.setAttribute("type", type);
+				
+				 session.setMaxInactiveInterval(30*60);
+				  
+				 Cookie userName = new Cookie("sessionusername", username);
+				 userName.setMaxAge(30*60); response.addCookie(userName);
+				 
+				 Cookie atype = new Cookie("sessiontype", type);
+				 atype.setMaxAge(30*60); response.addCookie(atype);
+				
+				try 
+				{
+					response.sendRedirect("supplier-dashboard.jsp");
+				} 
+				catch (IOException e) 
+				{
+					message = e.getMessage();
+				}
+				
+			}
+			else 
+			{
+				try 
+				{
+					response.sendRedirect("supplier-login.jsp");
+					message = "Please Check Username and Password";	
+				} catch (IOException es) {
+					
+					message = es.getMessage();
+				}	
+			}
+			
+			session.setAttribute("loginMessage", message);
+			
+		} 
+		catch (ClassNotFoundException | SQLException e) {
+		
+			message = e.getMessage();
+		}
+		
+		 
+	}
 
 }

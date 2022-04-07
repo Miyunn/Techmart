@@ -20,7 +20,7 @@
   <%
   String user = null;
   if(session.getAttribute("sessionusername") == null){
-    response.sendRedirect("supplier-login.jsp");
+    response.sendRedirect("agent-login.jsp");
     
   }
   else user = (String) session.getAttribute("sessionusername");
@@ -137,8 +137,10 @@
                   <td><?php echo $result['email'] ?></td> 
                 </tr>
               </table>
+            </div>
+
               <a href="instituteedit.php" class="btn btn-primary" style="float: right;"  >EDIT</a>
-              
+            </sectioin>
     </div>
   </main>
 </body>

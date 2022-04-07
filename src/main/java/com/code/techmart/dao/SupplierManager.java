@@ -134,4 +134,35 @@ public class SupplierManager {
 		 return result;
 	 }
 
+    public static Supplier searchuser(String username, String password) throws ClassNotFoundException, SQLException {
+	
+		DbConnector connector = new DbConnectorImplMySQL();
+		Connection connection = connector.getConnecion();
+
+		String query = "SELECT * FROM techmart.suppliers WHERE email=? AND password=?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, username);
+		ps.setString(2, password);
+
+		ResultSet rs = ps.executeQuery();
+
+		Supplier supplier = new Supplier();
+		
+		if(rs.next()) {
+			
+			supplier.setSupplierID(rs.getInt("supplierID"));
+			supplier.setfName(rs.getString("firstName"));
+			supplier.setlName(rs.getString("lastName"));
+			supplier.setContact(rs.getString("telno"));
+			supplier.setBranch(rs.getString("location"));
+			supplier.setEmail(rs.getString("email"));
+			supplier.setPassword(rs.getString("password"));
+
+    }
+
+		rs.close();
+		connection.close();
+		return supplier;
+	}	
+
 }

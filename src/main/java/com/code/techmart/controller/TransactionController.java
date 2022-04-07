@@ -128,7 +128,7 @@ public class TransactionController extends HttpServlet {
 		try {
 			boolean result = service.addTransaction(transaction);
 			if(result) {
-				message = "Transaction Added, Transaction For Customer : " +transaction.getCustomerID();
+				message = "<br> Product ID : "+transaction.getProductID()+ "<br>  Product Price : "+ transaction.getUnitprice()+ "<br> Quantity : "+ transaction.getQuantity()+ "<br>  Total : "+ transaction.getTotal()+ "<br>  Status : "+ transaction.getStatus();
 			}
 			
 			else {
@@ -139,7 +139,7 @@ public class TransactionController extends HttpServlet {
 		}
 		
 		request.setAttribute("message", message);
-		RequestDispatcher rd = request.getRequestDispatcher("getProduct?action=store-all");
+		RequestDispatcher rd = request.getRequestDispatcher("transaction-summary.jsp");	
 		
 		rd.forward(request, response);
 	}

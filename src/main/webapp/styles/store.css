@@ -210,3 +210,11 @@
 .fa-chevron-circle-right:before {
     color: darkgray;
 }
+
+.transactionSum {
+    margin: auto;
+    width: 50%;
+    border: 2px solid rgb(54, 54, 54);
+    padding: 10px;
+    text-align: center;
+  }

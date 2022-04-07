@@ -31,5 +31,11 @@ public class SupplierService {
 		
 		return SupplierManager.deleteSupplier(supplierID);
 	}
+
+	public Supplier searchUser(String username, String password) throws ClassNotFoundException, SQLException {
+		
+		return SupplierManager.searchuser(username, password);
+	}
+	
 	
 }
