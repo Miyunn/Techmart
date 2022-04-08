@@ -1,5 +1,10 @@
+<%@page import="java.util.List"%>
+<%@page import="com.code.techmart.model.Request"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,41 +45,41 @@
   }
   %>
 
-  <!--Main Navigation-->
-  <main style="margin-top: 58px">
-    <div class="container pt-4">
-      <section>
-        <div class="row">
-          <div class="col-xl-6 col-md-12 mb-4">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex justify-content-between p-md-1">
-                  <div class="d-flex flex-row">
-                    <div class="align-self-center">
-                      <h2 class="h1 mb-0 me-4">Last Update</h2>
-                    </div>
-                    <div>
-                      <h4></h4>
-                      <p class="mb-0"><%= (new java.util.Date()).toLocaleString()%></p>
-                    </div>
-                  </div>
-                  <div class="align-self-center">
-                    <i class="fa fa-calendar fa-3x"></i>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>  
-    </div>
-  </main>
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Products</h2>
+      <h2 class="text-center">Resupply Requests</h2>
+
+      <div style="margin-top: 58px">
+        <div class="container pt-4">
+          <section>
+            <div class="row">
+              <div class="col-xl-6 col-md-12 mb-4">
+                <div class="card">
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between p-md-1">
+                      <div class="d-flex flex-row">
+                        <div class="align-self-center">
+                          <h2 class="h1 mb-0 me-4">Last Update</h2>
+                        </div>
+                        <div>
+                          <h4></h4>
+                          <p class="mb-0"><%= (new java.util.Date()).toLocaleString()%></p>
+                        </div>
+                      </div>
+                      <div class="align-self-center">
+                        <i class="fa fa-calendar fa-3x"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+        </div>
+      </div>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getProduct?action=all">All Requests</a>
+          <a class="nav-link active" aria-current="page" href="getRequest?action=all">All Requests</a>
         </li>
       </ul>
       
@@ -87,29 +92,29 @@
             <tr>
             <th>Request ID </th>
             <th>Branch</th>
-            <th>Product ID</th>
+            <th>Request ID</th>
             <th>Quantity</th>
             <th>Action</th>
           </tr>
           
 
-            <tag:forEach var="product" items="${productList}">
+            <tag:forEach var="request" items="${requestList}">
             <tr>
-              <td>${product.getId()}</td>
-              <td>${product.getBranch()}</td>
-              <td>${product.getProductID()}</td>
-              <td>${product.getQuantity()}</td>
+              <td>${request.getId()}</td>
+              <td>${request.getBranch()}</td>
+              <td>${request.getRequestID()}</td>
+              <td>${request.getQuantity()}</td>
               <td>
 
                 <form action="confirmRequest" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="productID" value="${request.getId()}"/>
+                  <input type="hidden" name="requestID" value="${request.getId()}"/>
                   <button type="submit" class="btn btn-warning">Confirm</button>
                 </form>
 
                 <form action="rejectRequest" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="productID" value="${request.getId()}"/>
+                  <input type="hidden" name="requestID" value="${request.getId()}"/>
                   <button type="submit" class="btn btn-danger">Reject</button>
                 </form>
               

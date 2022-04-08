@@ -214,14 +214,14 @@
   </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/rejectRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
+  	<url-pattern>/confirmRequest</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>RequestController</servlet-name>
   	<url-pattern>/getRequest</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/updateRequest</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/deleteRequest</url-pattern>
   </servlet-mapping>
 </web-app>

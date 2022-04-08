@@ -15,7 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.code.techmart.model.Supplier;
 import com.code.techmart.services.AgentService;
 import com.code.techmart.services.SupplierService;
-
+ 
 
 public class SupplierController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -206,12 +206,12 @@ public class SupplierController extends HttpServlet {
 	public void supplierLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		SupplierService service = new SupplierService();
-		
 		Supplier supplier = new Supplier();
 		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String type = "supplier";
+		String userID = null;
 		
 		String message ="";
 		
@@ -223,7 +223,14 @@ public class SupplierController extends HttpServlet {
 			if(supplier !=null) {
 				
 				session.setAttribute("sessionusername", username);
-				session.setAttribute("type", type);
+				session.setAttribute("sessiontype", type);
+				session.setAttribute("sessionUserID", supplier.getSupplierID());
+				session.setAttribute("sessionBranch", supplier.getBranch());
+				
+			
+				
+				System.out.println(session.getAttribute("sessionUserID"));
+				System.out.println(session.getAttribute("sessionBranch"));
 				
 				 session.setMaxInactiveInterval(30*60);
 				  
@@ -232,17 +239,13 @@ public class SupplierController extends HttpServlet {
 				 
 				 Cookie atype = new Cookie("sessiontype", type);
 				 atype.setMaxAge(30*60); response.addCookie(atype);
-				
-				try 
-				{
-					response.sendRedirect("supplier-dashboard.jsp");
-				} 
-				catch (IOException e) 
-				{
-					message = e.getMessage();
-				}
-				
+				 
+				 Cookie userid = new Cookie("sessionUserID", userID);
+				 userid.setMaxAge(30*60); response.addCookie(userid);
+		
+				response.sendRedirect("getProduct?action=store-all");
 			}
+	
 			else 
 			{
 				try 
@@ -265,5 +268,4 @@ public class SupplierController extends HttpServlet {
 		
 		 
 	}
-
 }
