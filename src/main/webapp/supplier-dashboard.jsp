@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Request"%>
+<%@page import="com.code.techmart.model.Restock"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -48,7 +48,8 @@
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Resupply Requests</h2>
+      <h2 class="text-center">Stock Resupply</h2>
+   
 
       <div style="margin-top: 58px">
         <div class="container pt-4">
@@ -76,10 +77,20 @@
               </div>  
         </div>
       </div>
-      
+
+         
+      <form action="getRestock">
+
+        <label for="inventoryCode" class="form-label"> Record ID </label>
+        <input id="supplierID" name="supplierID" class="form-control" type="hidden" value="${sessionScope.sessionUserID}"/>"/>
+    
+        <input type="hidden" name="action" value="single"> <br>
+        <button type="submit" class="btn btn-black">Load Requests</button>
+      </form>
+
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getRequest?action=all">All Requests</a>
+          <a class="nav-link active" aria-current="page" href="getRestock?action=all">All Restock Requests</a>
         </li>
       </ul>
       
@@ -92,29 +103,29 @@
             <tr>
             <th>Request ID </th>
             <th>Branch</th>
-            <th>Request ID</th>
+            <th>Product ID</th>
             <th>Quantity</th>
             <th>Action</th>
           </tr>
           
 
-            <tag:forEach var="request" items="${requestList}">
+            <tag:forEach var="restock" items="${restockList}">
             <tr>
-              <td>${request.getId()}</td>
-              <td>${request.getBranch()}</td>
-              <td>${request.getRequestID()}</td>
-              <td>${request.getQuantity()}</td>
+              <td>${restock.getId()}</td>
+              <td>${restock.getBranch()}</td>
+              <td>${restock.getProductID()}</td>
+              <td>${restock.getQuantity()}</td>
               <td>
 
-                <form action="confirmRequest" method="post">
+                <form action="confirmRestock" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="requestID" value="${request.getId()}"/>
+                  <input type="hidden" name="restockID" value="${restock.getId()}"/>
                   <button type="submit" class="btn btn-warning">Confirm</button>
                 </form>
 
-                <form action="rejectRequest" method="post">
+                <form action="rejectRestock" method="post">
                   <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="requestID" value="${request.getId()}"/>
+                  <input type="hidden" name="restockID" value="${restock.getId()}"/>
                   <button type="submit" class="btn btn-danger">Reject</button>
                 </form>
               

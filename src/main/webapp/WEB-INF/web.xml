@@ -59,10 +59,10 @@
   	<servlet-class>com.code.techmart.controller.AdminController</servlet-class>
   </servlet>
   <servlet>
-  	<servlet-name>RequestController</servlet-name>
-  	<display-name>RequestController</display-name>
+  	<servlet-name>RestockController</servlet-name>
+  	<display-name>RestockController</display-name>
   	<description></description>
-  	<servlet-class>com.code.techmart.controller.RequestController</servlet-class>
+  	<servlet-class>RestockController</servlet-class>
   </servlet>
   <servlet-mapping>
   	<servlet-name>ProductController</servlet-name>
@@ -209,19 +209,19 @@
   	<url-pattern>/adminLogin</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/addRequest</url-pattern>
+  	<servlet-name>RestockController</servlet-name>
+  	<url-pattern>/addRestock</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/rejectRequest</url-pattern>
+  	<servlet-name>RestockController</servlet-name>
+  	<url-pattern>/acceptRestock</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/confirmRequest</url-pattern>
+  	<servlet-name>RestockController</servlet-name>
+  	<url-pattern>/declineRestock</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
-  	<servlet-name>RequestController</servlet-name>
-  	<url-pattern>/getRequest</url-pattern>
+  	<servlet-name>RestockController</servlet-name>
+  	<url-pattern>/getRestock</url-pattern>
   </servlet-mapping>
 </web-app>

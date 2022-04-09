@@ -48,51 +48,20 @@
       <br> <br>
 
       <div class="newReleases">
-        <h2 style="text-align: center;">Trending Products</h2>
+        <h2 style="text-align: center;">Welcome to TechMart</h2>
       </div>
-      
-        <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative">
-        <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-           
-            <tag:forEach var="product" items="${productList}">
 
-                <div class="col hp">
-                    <div class="card h-100 shadow-sm">
-                    <a href="store.jsp">
-                        <img src="${product.getImage()}" class="card-img-top" alt="product.title" />
-                    </a>
-            
-                    <div class="label-top shadow-sm">
-                        <a class="text-white" href="#">${product.getType()}</a>
-                    </div>
-                    <div class="card-body">
-                        <div class="clearfix mb-3">
-                        <span class="float-start badge rounded-pill bg-success">LKR ${product.getPrice()}</span>
-            
-                        </div>
-                        <h5 class="card-title">
-                        <a target="_blank" href="#">${product.getModel()}</a>
-                        </h5>
-            
-                        <div class="d-grid gap-2 my-4">
-           
-                       	</div>
-                    	</div>
-                    </div>
-                </div>
+      <br>
 
-        </tag:forEach>
+      <p style="text-align: center;">
+       We are Sri Lankans number one Mobile Phone Dealer. <br> We sell mobile phones, mobile phones accessories, tablets and other related devices 
+      </p>
 
-         </div>
+     <br> <br>
+      <P style="text-align: center;">
+        <a href="getProduct?action=store-all" class="btn btn-primary">Shop Now</a>
     </div>
-
-     
-
-
-
-
-
-
+    <br> <br> <br>
 
 </div>
 

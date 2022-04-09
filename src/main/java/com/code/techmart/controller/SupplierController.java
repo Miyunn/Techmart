@@ -243,7 +243,7 @@ public class SupplierController extends HttpServlet {
 				 Cookie userid = new Cookie("sessionUserID", userID);
 				 userid.setMaxAge(30*60); response.addCookie(userid);
 		
-				response.sendRedirect("getProduct?action=store-all");
+				response.sendRedirect("supplier-dashboard.jsp");
 			}
 	
 			else 

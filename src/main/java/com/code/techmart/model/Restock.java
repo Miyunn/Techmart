@@ -1,6 +1,6 @@
 package com.code.techmart.model;
 
-public class Request {
+public class Restock {
 
     private int id;
     private String branch;
@@ -10,11 +10,11 @@ public class Request {
     private String status;
 
    
-    public Request() {
+    public Restock() {
         
     }
 
-    public Request(int id, String branch, int supplier, int productID, int quantity, String status) {
+    public Restock(int id, String branch, int supplier, int productID, int quantity, String status) {
         this.id = id;
         this.branch = branch;
         this.supplier = supplier;
