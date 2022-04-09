@@ -17,6 +17,12 @@ public class TransactionService {
 		return TransactionManager.getAllTransactions();
 	}
 	
+	public List<Transaction> getAgentTransactions(String branch) throws ClassNotFoundException, SQLException{
+		
+		return TransactionManager.getAllTransactionsOnBranch(branch);
+	}
+	
+	
 	public boolean addTransaction(Transaction transaction) throws ClassNotFoundException, SQLException {
 		
 		return TransactionManager.addTransaction(transaction);
@@ -30,6 +36,12 @@ public class TransactionService {
 	public boolean deleteTransaction(int transactionID) throws ClassNotFoundException, SQLException {
 		
 		return TransactionManager.deleteTransaction(transactionID);
+	}
+	
+	
+	public boolean acceptTransaction(int transactionID) throws ClassNotFoundException, SQLException {
+		
+		return TransactionManager.acceptTransaction(transactionID);
 	}
 	
 }

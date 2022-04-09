@@ -1,9 +1,8 @@
+<%@page import="java.util.List"%>
+<%@page import="com.code.techmart.model.Product"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-
-<%@ taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
-
+    pageEncoding="ISO-8859-1" isELIgnored="false"%>
+    <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -55,7 +54,7 @@
                       <h2 class="h1 mb-0 me-4">Last Update</h2>
                     </div>
                     <div>
-                      <h4><?php echo $date = date('l'); ?></h4>
+                      <h4></h4>
                       <p class="mb-0"><%= (new java.util.Date()).toLocaleString()%></p>
                     </div>
                   </div>
@@ -109,32 +108,15 @@
             <div class="table-responsive">
               <table class="table">
                 <tr>
-                  <td>Colombo</td>
-                  <td><?php echo $result['iid'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Galle</td>
-                  <td><?php echo $result['name'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Gampaha</td>
-                  <td><?php echo $result['address'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Kurunegala</td>
-                  <td><?php echo $result['telephone'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Kandy</td>
-                  <td><?php echo $result['email'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Jaffna</td>
-                  <td><?php echo $result['email'] ?></td> 
-                </tr>
-                <tr>
-                  <td>Nugegoda</td>
-                  <td><?php echo $result['email'] ?></td> 
+                  <td>
+                    <form action="getTransaction" method="post">
+                      <input type="hidden" name=action value="agent"/>
+                      <input type="hidden" name="branch" value="${sessionScope.sessionBranch}"/>
+                      <button type="submit" class="btn btn-warning bold-btn">Manage Transactions</button>
+                    </form>
+<p><%System.out.println(session.getAttribute("sessionBranch"));%></p>
+                  </td>
+                  <td></td> 
                 </tr>
               </table>
             </div>

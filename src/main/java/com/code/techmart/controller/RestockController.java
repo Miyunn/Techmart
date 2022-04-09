@@ -36,14 +36,18 @@ public class RestockController extends HttpServlet {
 		else if(action.equals("branch")){
 			//getStoreRestocks(request, response);
 		}
+
+		else if(action.equals("byID")){
+			getRestockBySupplier(request, response);
+		}
 		
 		
 		else {
 			getRestock(request, response);
 		}
 		
-		RequestDispatcher rd = request.getRequestDispatcher("restocks.jsp");
-		rd.forward(request, response);
+		//RequestDispatcher rd = request.getRequestDispatcher("restocks.jsp");
+		//rd.forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -194,5 +198,50 @@ public class RestockController extends HttpServlet {
 		session.setAttribute("deleteMsg", message);
 		
 		response.sendRedirect("/techmart/getRestock?action=all");
+	}
+
+	private void getRestockBySupplier(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message ="";
+		RestockService service = new RestockService();
+		int supplierID = Integer.parseInt(request.getParameter("supplierID"));
+		
+		try {
+			List<Restock> restocks = service.getSupplierRestocks(supplierID);
+			
+			if(restocks.isEmpty()) {
+				message = "No Restocks Requests found";
+			}
+			
+			request.setAttribute("restockList", restocks);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = e.getMessage();
+		}
+		
+		request.setAttribute("message", message);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("supplier-dashboard.jsp");
+		rd.forward(request, response);
+	}
+
+	private void acceptRestock(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String message = "";
+		int restockID = Integer.parseInt(request.getParameter("restockID"));
+		RestockService service = new RestockService();
+		try {
+			service.acceptRestock(restockID);
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message=e.getMessage();
+		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("deleteMsg", message);
+		
+		response.sendRedirect("supplier-dashboard.jsp");
 	}
 }

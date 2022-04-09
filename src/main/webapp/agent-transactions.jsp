@@ -1,6 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Agent"%>
-<%@page import="java.util.ArrayList"%>
+<%@page import="com.code.techmart.model.Transaction"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
     <%@taglib prefix="tag" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -8,7 +7,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Techmart - Manage Agents</title>
+<title>Techmart - Manage Transactions</title>
       <!-- Font Awesome -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <!-- Google Fonts Roboto -->
@@ -41,23 +40,17 @@
   }
   }
   %>
-  
-  <jsp:include page="navadmin.jsp" />
+
+  <jsp:include page="nava.jsp" />
 
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Agents</h2>
+      <h2 class="text-center">Manage Transactions</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getAgent?action=all">All Agents</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="search-edit-agent.jsp">Search Agent</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="add-agent.jsp">Add Agent</a>
+          <a class="nav-link active" aria-current="page" href="#">All Transactions</a>
         </li>
       </ul>
       
@@ -68,29 +61,33 @@
         <table class="table" style="width:100%">
     
             <tr>
-            <th>Agent ID </th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Contact</th>
+            <th>Transaction ID </th>
+            <th>Customer ID</th>
+            <th>Product ID</th>
             <th>Branch</th>
-            <th>Username</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Total</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
           
 
-            <tag:forEach var="agent" items="${agentList}">
+            <tag:forEach var="transaction" items="${transactionList}">
             <tr>
-              <td>${agent.getAgentID()}</td>
-              <td>${agent.getfName()}</td>
-              <td>${agent.getlName()}</td>
-              <td>${agent.getContact()}</td>
-              <td>${agent.getBranch()}</td>
-              <td>${agent.getEmail()}</td>
+              <td>${transaction.getTransactionID()}</td>
+              <td>${transaction.getCustomerID()}</td>
+              <td>${transaction.getProductID()}</td>
+              <td>${transaction.getBranch()}</td>
+              <td>${transaction.getQuantity()}</td>
+              <td>${transaction.getUnitprice()}</td>
+              <td>${transaction.getTotal()}</td>
+              <td>${transaction.getStatus()}</td>
               <td>
-                <form action="deleteAgent" method="post">
-                  <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="agentID" value="${agent.getAgentID()}"/>
-                  <button type="submit" class="btn btn-danger">Delete</button>
+                <form action="acceptTransaction" method="post">
+                  <input type="hidden" name="action" value="accept"/>
+                  <input type="hidden" name="transactionID" value="${transaction.getTransactionID()}"/>
+                  <button type="submit" onClick="refreshPage()" class="btn btn-warning">Accept Order</button>
                 </form>
               
               </td>

@@ -33,6 +33,10 @@ public class SupplierController extends HttpServlet {
 		if(action.equals("all")) {
 			getAllSuppliers(request, response);
 		}
+
+		else if(action.equals("agent")){
+			getAllSuppliersAgent(request, response);
+		}
 		
 		else {
 			getSupplier(request, response);
@@ -88,6 +92,31 @@ public class SupplierController extends HttpServlet {
 		request.setAttribute("message", message);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("suppliers.jsp");
+		rd.forward(request, response);
+	}
+
+	private void getAllSuppliersAgent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message ="";
+		SupplierService service = new SupplierService();
+		try {
+			List<Supplier> suppliers = service.getAllSuppliers();
+			
+			if(suppliers.isEmpty()) {
+				message = "No Suppliers found";
+			}
+			
+			request.setAttribute("supplierList", suppliers);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = e.getMessage();
+		}
+		
+		request.setAttribute("message", message);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("agent-suppliers.jsp");
 		rd.forward(request, response);
 	}
 
@@ -225,13 +254,9 @@ public class SupplierController extends HttpServlet {
 				session.setAttribute("sessionusername", username);
 				session.setAttribute("sessiontype", type);
 				session.setAttribute("sessionUserID", supplier.getSupplierID());
-				session.setAttribute("sessionBranch", supplier.getBranch());
-				
-			
-				
+		
 				System.out.println(session.getAttribute("sessionUserID"));
-				System.out.println(session.getAttribute("sessionBranch"));
-				
+			
 				 session.setMaxInactiveInterval(30*60);
 				  
 				 Cookie userName = new Cookie("sessionusername", username);

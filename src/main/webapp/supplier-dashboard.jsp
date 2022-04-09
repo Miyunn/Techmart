@@ -80,17 +80,15 @@
 
          
       <form action="getRestock">
-
-        <label for="inventoryCode" class="form-label"> Record ID </label>
-        <input id="supplierID" name="supplierID" class="form-control" type="hidden" value="${sessionScope.sessionUserID}"/>"/>
+        <input id="supplierID" name="supplierID" class="form-control" type="hidden" value="${sessionScope.sessionUserID}"/>
     
-        <input type="hidden" name="action" value="single"> <br>
-        <button type="submit" class="btn btn-black">Load Requests</button>
+        <input type="hidden" name="action" value="byID"> <br>
+        <button type="submit" class="btn btn-primary">Load Requests</button>
       </form>
 
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getRestock?action=all">All Restock Requests</a>
+          <a class="nav-link active" aria-current="page" href="getRestock?action=supplier">All Restock Requests</a>
         </li>
       </ul>
       
@@ -105,7 +103,9 @@
             <th>Branch</th>
             <th>Product ID</th>
             <th>Quantity</th>
-            <th>Action</th>
+            <th>Status</th>
+            <th></th>
+            <th></th>
           </tr>
           
 
@@ -115,25 +115,26 @@
               <td>${restock.getBranch()}</td>
               <td>${restock.getProductID()}</td>
               <td>${restock.getQuantity()}</td>
+              <td>${restock.getStatus()}</td>
               <td>
 
-                <form action="confirmRestock" method="post">
-                  <input type="hidden" name="action" value="delete"/>
+                <form action="acceptRestock" method="post">
+                  <input type="hidden" name="action" value="accept"/>
                   <input type="hidden" name="restockID" value="${restock.getId()}"/>
                   <button type="submit" class="btn btn-warning">Confirm</button>
                 </form>
+              </td>
 
-                <form action="rejectRestock" method="post">
-                  <input type="hidden" name="action" value="delete"/>
+              <td>
+                <form action="declineRestock" method="post">
+                  <input type="hidden" name="action" value="reject"/>
                   <input type="hidden" name="restockID" value="${restock.getId()}"/>
                   <button type="submit" class="btn btn-danger">Reject</button>
                 </form>
-              
               </td>
+        
             </tr>
             </tag:forEach>
-
-   
         </table>
       </div>
     </div>

@@ -146,16 +146,18 @@ public class AgentManager {
 			ps.setString(1, username);
 			ps.setString(2, password);
 			
-			System.out.println(username);
-			System.out.println(password);
-			
 			ResultSet rs = ps.executeQuery();
 		
-			Agent agent = null;
+			Agent agent = new Agent();
+		
 			if(rs.next()) {
-				agent = new Agent();
-				agent.setEmail("email");
-				agent.setPassword("password");
+				agent.setAgentID(rs.getInt("agentID"));
+				agent.setfName(rs.getString("firstName"));
+				agent.setlName(rs.getString("lastName"));
+				agent.setContact(rs.getString("telno"));
+				agent.setBranch(rs.getString("location"));
+				agent.setEmail(rs.getString("email"));
+				agent.setPassword(rs.getString("password"));
 			}
 			
 			ps.close();

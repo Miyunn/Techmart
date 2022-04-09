@@ -84,8 +84,8 @@
 	</div>
 
 	<div class="col-md-6">
-		<label for="Price" class="form-label">Email</label>
-		<input type="email" id="email" class="form-control" name="email" value="${customer.getEmail()}"/>
+		<label for="Price" class="form-label">Username</label>
+		<input type="text" id="email" class="form-control" name="email" value="${customer.getEmail()}"/>
 	</div>
 
 	<div class="col-md-6">

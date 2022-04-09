@@ -31,6 +31,8 @@ public class TransactionController extends HttpServlet {
 			getAllTransactions(request, response);
 		}
 		
+		
+		
 		else {
 			getTransaction(request, response);
 		}
@@ -54,6 +56,18 @@ public class TransactionController extends HttpServlet {
 
 		else if(action.equals("delete")){
 			deleteTransaction(request, response);
+		}
+
+		else if (action.equals("agent")) {
+			getAgentTransaction(request, response);
+		}
+		
+		else if (action.equals("accept")) {
+			acceptTransaction(request,response);
+		}
+
+		else if (action.equals("reject")) {
+			acceptTransaction(request,response);
 		}
 	}
 
@@ -104,6 +118,33 @@ public class TransactionController extends HttpServlet {
 
 		
 		RequestDispatcher rd = request.getRequestDispatcher("search-edit-transaction.jsp");
+		rd.forward(request, response);
+	}
+	
+	private void getAgentTransaction(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		String message ="";
+		TransactionService service = new TransactionService();
+		String branch = request.getParameter("branch");
+		
+		try {
+			List<Transaction> transactions = service.getAgentTransactions(branch);
+			
+			if(transactions.isEmpty()) {
+				message = "No Transactions found";
+			}
+			
+			request.setAttribute("transactionList", transactions);
+			
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message = e.getMessage();
+		}
+		
+		request.setAttribute("message", message);
+		
+		RequestDispatcher rd = request.getRequestDispatcher("agent-transactions.jsp");
 		rd.forward(request, response);
 	}
 
@@ -203,6 +244,24 @@ public class TransactionController extends HttpServlet {
 		session.setAttribute("deleteMsg", message);
 		
 		response.sendRedirect("/techmart/getTransaction?action=all");
+	}
+	
+	private void acceptTransaction(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String message = "";
+		int transactionID = Integer.parseInt(request.getParameter("transactionID"));
+		TransactionService service = new TransactionService();
+		try {
+			service.acceptTransaction(transactionID);
+		} catch (ClassNotFoundException | SQLException e) {
+			
+			message=e.getMessage();
+		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("deleteMsg", message);
+		
+		response.sendRedirect("agent-transactions.jsp");
 	}
 
 }

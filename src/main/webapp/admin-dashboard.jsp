@@ -54,7 +54,7 @@
                       <h2 class="h1 mb-0 me-4">Last Update</h2>
                     </div>
                     <div>
-                      <h4><?php echo $date = date('l'); ?></h4>
+                      <h4></h4>
                       <p class="mb-0"><%= (new java.util.Date()).toLocaleString()%></p>
                     </div>
                   </div>
@@ -73,7 +73,7 @@
                     <i class="fas fa-pencil-alt text-info fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3><?php countcls();?></h3>
+                    <h3>0</h3>
                     <p class="mb-0">Total Sales</p>
                   </div>
                 </div>
@@ -88,7 +88,7 @@
                     <i class="far fa-user text-success fa-3x"></i>
                   </div>
                   <div class="text-end">
-                    <h3>  <?php countteach();?></h3>
+                    <h3>4</h3>
                     <p class="mb-0">Registered Custoemrs</p>
                   </div>
                 </div>
@@ -109,34 +109,33 @@
               <table class="table">
                 <tr>
                   <td>Colombo</td>
-                  <td><?php echo $result['iid'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Galle</td>
-                  <td><?php echo $result['name'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Gampaha</td>
-                  <td><?php echo $result['address'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Kurunegala</td>
-                  <td><?php echo $result['telephone'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Kandy</td>
-                  <td><?php echo $result['email'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Jaffna</td>
-                  <td><?php echo $result['email'] ?></td> 
+                  <td></td> 
                 </tr>
                 <tr>
                   <td>Nugegoda</td>
-                  <td><?php echo $result['email'] ?></td> 
+                  <td></td> 
                 </tr>
               </table>
-              <a href="instituteedit.php" class="btn btn-primary" style="float: right;"  >EDIT</a>
     </div>
   </main>
 </body>

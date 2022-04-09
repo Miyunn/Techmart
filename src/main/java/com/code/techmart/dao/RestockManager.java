@@ -107,7 +107,7 @@ public class RestockManager {
 		
 		while(rs.next()) {
 			Restock restock = new Restock(rs.getInt("restockID"), rs.getString("branch"), 
-					rs.getInt("supplier"), rs.getInt("productID"), rs.getInt("quantity"), rs.getString("Status"));
+					rs.getInt("supplier"), rs.getInt("productID"), rs.getInt("quantity"), rs.getString("status"));
 			
 			restocks.add(restock);
 		}

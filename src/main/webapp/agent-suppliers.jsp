@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.code.techmart.model.Agent"%>
+<%@page import="com.code.techmart.model.Supplier"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1" isELIgnored="false"%>
@@ -8,7 +8,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Techmart - Manage Agents</title>
+<title>Techmart - Manage Suppliers</title>
       <!-- Font Awesome -->
       <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.2/css/all.css" />
       <!-- Google Fonts Roboto -->
@@ -42,22 +42,17 @@
   }
   %>
   
-  <jsp:include page="navadmin.jsp" />
+
+  <jsp:include page="nava.jsp" />
 
 
   <main style="margin-top: 20px">
     <div class="container pt-4">
-      <h2 class="text-center">Manage Agents</h2>
+      <h2 class="text-center">Manage Suppliers</h2>
       
       <ul class="nav nav-tabs" style="margin-top: 20px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="getAgent?action=all">All Agents</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="search-edit-agent.jsp">Search Agent</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="add-agent.jsp">Add Agent</a>
+          <a class="nav-link active" aria-current="page" href="getSupplier?action=agent">All Suppliers</a>
         </li>
       </ul>
       
@@ -68,32 +63,23 @@
         <table class="table" style="width:100%">
     
             <tr>
-            <th>Agent ID </th>
+            <th>Supplier ID </th>
             <th>First Name</th>
-            <th>Last Name</th>
+            <th>Last Model</th>
             <th>Contact</th>
             <th>Branch</th>
-            <th>Username</th>
-            <th>Action</th>
+            <th>Email</th>
           </tr>
           
 
-            <tag:forEach var="agent" items="${agentList}">
+            <tag:forEach var="supplier" items="${supplierList}">
             <tr>
-              <td>${agent.getAgentID()}</td>
-              <td>${agent.getfName()}</td>
-              <td>${agent.getlName()}</td>
-              <td>${agent.getContact()}</td>
-              <td>${agent.getBranch()}</td>
-              <td>${agent.getEmail()}</td>
-              <td>
-                <form action="deleteAgent" method="post">
-                  <input type="hidden" name="action" value="delete"/>
-                  <input type="hidden" name="agentID" value="${agent.getAgentID()}"/>
-                  <button type="submit" class="btn btn-danger">Delete</button>
-                </form>
-              
-              </td>
+              <td>${supplier.getSupplierID()}</td>
+              <td>${supplier.getfName()}</td>
+              <td>${supplier.getlName()}</td>
+              <td>${supplier.getContact()}</td>
+              <td>${supplier.getBranch()}</td>
+              <td>${supplier.getEmail()}</td>
             </tr>
             </tag:forEach>
 
@@ -102,11 +88,10 @@
       </div>
     </div>
   </main>       
-  <!--Main layout-->
+
   
-  <!-- MDB -->
   <script type="text/javascript" src="../js/mdb.min.js"></script>
-  <!-- Custom scripts -->
+
   <script type="text/javascript" src="../js/admin.js"></script>
 
 </body>

@@ -14,7 +14,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
-          <a class="navbar-brand" href="agentHome.jsp">TechMart Agent</a>
+          <a class="navbar-brand" href="agent-dashboard.jsp">TechMart Agent</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -22,7 +22,11 @@
             <ul class="navbar-nav">
             
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="agentLogout.jsp">View Products</a>
+                <a class="nav-link" aria-current="page" href="getProduct?action=agent">View Products</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="getSupplier?action=agent">View Suplliers</a>
               </li>
 
               <li class="nav-item">

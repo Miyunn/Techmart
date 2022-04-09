@@ -54,7 +54,9 @@
       <br>
 
       <p style="text-align: center;">
-       We are Sri Lankans number one Mobile Phone Dealer. <br> We sell mobile phones, mobile phones accessories, tablets and other related devices 
+       We are Sri Lankans number one Mobile Phone Dealer. <br> 
+       We sell mobile phones, mobile phones accessories, tablets and other related devices <br>
+       Let's get started be pressing the button below.
       </p>
 
      <br> <br>

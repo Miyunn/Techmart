@@ -97,6 +97,7 @@ public class TransactionManager {
 		
 		return transactions;
 	}
+    
 	
 	 public static boolean addTransaction(Transaction transaction) throws ClassNotFoundException, SQLException {
 		
@@ -137,6 +138,7 @@ public class TransactionManager {
 		ps.setString(3, transaction.getUnitprice());
 		ps.setString(6, transaction.getTotal());
 		ps.setString(7, transaction.getStatus());
+		ps.setInt(8, transaction.getTransactionID());
 		
 		boolean result = ps.executeUpdate() >0;
 
@@ -163,5 +165,46 @@ public class TransactionManager {
 
 		 return result;
 	 }
+	 
+	 public static boolean acceptTransaction(int transactionID) throws SQLException, ClassNotFoundException {
+		 
+		 String status = "Confirmed";
+		 
+		DbConnector connector = new DbConnectorImplMySQL();
+		Connection connection = connector.getConnecion();
+		
+		String query = "UPDATE techmart.transactions SET status=? WHERE transactionID=?";
+		PreparedStatement ps = connection.prepareStatement(query);
+		ps.setString(1, status);
+		ps.setInt(2, transactionID);
+		
+		boolean result = ps.executeUpdate() >0;
+
+		ps.close();
+		connection.close();
+		 
+		 return result;
+	 }
+
+	 public static boolean rejectTransaction(int transactionID) throws SQLException, ClassNotFoundException {
+		 
+	   String status = "Declined";
+		
+	   DbConnector connector = new DbConnectorImplMySQL();
+	   Connection connection = connector.getConnecion();
+	   
+	   String query = "UPDATE techmart.transactions SET status=? WHERE transactionID=?";
+	   PreparedStatement ps = connection.prepareStatement(query);
+	   ps.setString(1, status);
+	   ps.setInt(2, transactionID);
+	   
+	   boolean result = ps.executeUpdate() >0;
+
+	   ps.close();
+	   connection.close();
+		
+		return result;
+	}
+
 
 }

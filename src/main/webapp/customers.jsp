@@ -70,10 +70,10 @@
             <tr>
             <th>Customer ID </th>
             <th>First Name</th>
-            <th>Last Model</th>
-            <th>Address</th>
-            <th>Contact</th>
+            <th>Last Name</th>
             <th>Branch</th>
+            <th>Contact</th>
+            <th>Address</th>
             <th>Email</th>
             <th>Action</th>
           </tr>

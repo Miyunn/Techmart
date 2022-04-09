@@ -210,6 +210,7 @@ public class AgentController extends HttpServlet {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		String type = "agent";
+		String branch = null;
 		
 		String message ="";
 		
@@ -220,8 +221,10 @@ public class AgentController extends HttpServlet {
 			
 			if(agent !=null) {
 				
+				branch = agent.getBranch();
 				session.setAttribute("sessionusername", username);
 				session.setAttribute("type", type);
+				session.setAttribute("sessionBranch", agent.getBranch());
 				
 				 session.setMaxInactiveInterval(30*60);
 				  
@@ -230,6 +233,9 @@ public class AgentController extends HttpServlet {
 				 
 				 Cookie atype = new Cookie("sessiontype", type);
 				 atype.setMaxAge(30*60); response.addCookie(atype);
+				 
+				 Cookie Branch = new Cookie("sessionBranch", branch);
+				 atype.setMaxAge(30*60); response.addCookie(Branch);
 				
 				try 
 				{
