@@ -23,12 +23,15 @@
   
   <%
   String user = null;
-  if(session.getAttribute("sessionusername") == null){
+  if(session.getAttribute("sessionusername") == null) {
     response.sendRedirect("admin-login.jsp");
-    
+    }
+
+  else if (session.getAttribute("sesssiontype") != "admin") {
+    response.sendRedirect("admin-login.jsp");
   }
-  else user = (String) session.getAttribute("sessionusername");
-  
+    
+
   String userName = null;
   String sessionID = null;
   Cookie[] cookies = request.getCookies();
@@ -89,7 +92,7 @@
                   </div>
                   <div class="text-end">
                     <h3>4</h3>
-                    <p class="mb-0">Registered Custoemrs</p>
+                    <p class="mb-0">Registered Customers</p>
                   </div>
                 </div>
               </div>

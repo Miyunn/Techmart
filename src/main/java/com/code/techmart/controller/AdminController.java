@@ -58,7 +58,7 @@ public class AdminController extends HttpServlet {
 			if(admin !=null) {
 				
 				session.setAttribute("sessionusername", username);
-				session.setAttribute("type", type);
+				session.setAttribute("sesssiontype", type);
 				
 				 session.setMaxInactiveInterval(30*60);
 				  
